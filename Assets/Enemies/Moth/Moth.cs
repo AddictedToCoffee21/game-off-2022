@@ -4,46 +4,25 @@ using UnityEngine;
 
 public class Moth : Enemy
 {
+    private Vector2 _startPosition;
 
-    private Vector2 m_startPosition;
+    private Vector2 _targetPosition;
 
-    [SerializeField]
-    private float m_verticalMove;
-
-    private Vector2 m_targetPosition;
-
-    public GameObject bullet;
+    public Bullet bullet;
 
     new void Start() 
     {
         base.Start();
-        m_startPosition = base.rb2d.position;
+        _startPosition = base.rb2d.position;
     }
 
     override protected void Move() 
     {
-        if(m_targetPosition == Vector2.zero) 
-        {
-            m_targetPosition = base.rb2d.position;
-            m_targetPosition.y = m_startPosition.y + m_verticalMove;
-        }
-
-        if(base.rb2d.position.y >= m_startPosition.y + m_verticalMove) 
-        {
-            m_targetPosition.y = m_startPosition.y - m_verticalMove;
-        }
-        else if(base.rb2d.position.y <= m_startPosition.y - m_verticalMove)
-        {
-            m_targetPosition.y = m_startPosition.y + m_verticalMove;
-        }
-
-        base.rb2d.position = Vector2.MoveTowards(base.rb2d.position, m_targetPosition, base.enemySpeed * Time.fixedDeltaTime);
-        
+        //Moth is stationary for now
     }
 
     override protected void Shoot() 
     {
-        GameObject newBullet = Instantiate(bullet, base.rb2d.position, Quaternion.identity);
-        newBullet.GetComponent<Rigidbody2D>().velocity = (base.lookTarget.position - base.rb2d.position).normalized * 3;
+        //Moth does'nt shoot for now
     }
 }

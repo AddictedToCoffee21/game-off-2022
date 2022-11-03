@@ -16,7 +16,7 @@ public class Hedgehog : Enemy
 
     private Vector2 _targetPosition;
 
-    public GameObject bullet;
+    public Bullet bullet;
 
     public int shotCount = 8;
 
@@ -43,9 +43,9 @@ public class Hedgehog : Enemy
 
         for(float currentAngle = 0f; currentAngle <=360; currentAngle += angleIncrement) 
         {
-            GameObject newBullet = Instantiate(bullet, base.rb2d.position, Quaternion.identity);
+            Bullet newBullet = Instantiate(bullet, base.rb2d.position, Quaternion.identity);
             Vector2 bulletDirection = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
-            newBullet.GetComponent<Rigidbody2D>().velocity = bulletDirection.normalized;
+            newBullet.SetVelocity(bulletDirection);
         }
 
     }
