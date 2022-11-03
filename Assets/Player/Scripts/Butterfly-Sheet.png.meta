@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d08bb429b4d950543b79294e371dc0ea
+guid: ae37b91556118e540b0542bdb1ce8638
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,43 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Butterfly-Sheet-Sheet_0
+      name: Butterfly-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.3431422, y: 0.3017081}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6c212e83312b3142af5146121e81487
-      internalID: 1727195138
+      spriteID: a4982aee21c91ab479468841a0083723
+      internalID: -1531434031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Butterfly-Sheet-Sheet_1
+      name: Butterfly-Sheet_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.79003894, y: 0.49408084}
+      pivot: {x: 0.95116997, y: 0.89960754}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca34b95a2b56b9248a66202e627afdf5
-      internalID: -1503852896
+      spriteID: d523bc7d9103a9b43a61736df1d2868d
+      internalID: -34461512
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: dc59e44f266e63749848479406e06f87
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Butterfly-Sheet-Sheet_0: 1727195138
-      Butterfly-Sheet-Sheet_1: -1503852896
+      Butterfly-Sheet_0: -1531434031
+      Butterfly-Sheet_1: -34461512
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
