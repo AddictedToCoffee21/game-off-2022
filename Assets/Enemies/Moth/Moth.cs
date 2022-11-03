@@ -44,6 +44,6 @@ public class Moth : Enemy
     override protected void Shoot() 
     {
         GameObject newBullet = Instantiate(bullet, base.rb2d.position, Quaternion.identity);
-        newBullet.GetComponent<Rigidbody2D>().velocity = (base.target.position - base.rb2d.position).normalized * 3;
+        newBullet.GetComponent<Rigidbody2D>().velocity = (base.lookTarget.position - base.rb2d.position).normalized * 3;
     }
 }

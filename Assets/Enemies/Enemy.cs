@@ -17,14 +17,14 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected int enemyDamage = 1;
 
-    [SerializeField, Range(0,10)]
+    [SerializeField, Range(0,100)]
     protected float enemySpeed = 1;
 
     [SerializeField]
     protected float timeBetweenShots = 1f;
 
-    //The Target the Enemy chases
-    public Rigidbody2D target;
+    [Tooltip("The target the enemy automatically looks at, leave empty for no looking")]
+    public Rigidbody2D lookTarget;
 
     protected void Start()
     {
@@ -44,10 +44,12 @@ public abstract class Enemy : MonoBehaviour
         Move();
     }
 
-    void UpdateSpriteOrientation() 
+    protected void UpdateSpriteOrientation() 
     {
-
-        if(target.position.x > rb2d.position.x) {
+        if(!lookTarget)
+            return;
+        
+        if(lookTarget.position.x > rb2d.position.x) {
             spriteRenderer.flipX = true;
         } else {
             spriteRenderer.flipX = false;
