@@ -26,9 +26,7 @@ public abstract class Enemy : MonoBehaviour
     //The Target the Enemy chases
     public Rigidbody2D target;
 
-    public GameObject bullet;
-
-    void Start()
+    protected void Start()
     {
         this.rb2d = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,13 +34,18 @@ public abstract class Enemy : MonoBehaviour
         StartCoroutine("WaitForShot");
     }
 
-    void Update()
+    protected void Update()
     {
-        Move();
         UpdateSpriteOrientation();
     }
 
-    void UpdateSpriteOrientation() {
+    void FixedUpdate() 
+    {
+        Move();
+    }
+
+    void UpdateSpriteOrientation() 
+    {
 
         if(target.position.x > rb2d.position.x) {
             spriteRenderer.flipX = true;
@@ -63,11 +66,13 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected void Die() {
+    protected void Die()
+    {
         Destroy(this.gameObject);
     }
 
-    IEnumerator WaitForShot() {
+    IEnumerator WaitForShot() 
+    {
         while(true) {
             yield return new WaitForSecondsRealtime(timeBetweenShots);
             Shoot();
