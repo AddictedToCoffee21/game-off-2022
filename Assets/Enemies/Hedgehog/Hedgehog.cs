@@ -20,10 +20,18 @@ public class Hedgehog : Enemy
 
     public int shotCount = 8;
 
+    private bool _isWarning = false;
+    
+    private Animator _animator;
+
+    [Tooltip("The sprite to be shown shortly before attack")]
+    public Sprite dangerSprite;
+
     new void Start() 
     {
         base.Start();
         _startPosition = base.rb2d.position;
+        _animator = GetComponent<Animator>();
 
         //Set look Direction
         if(moveDirection == MoveDirection.right) {
@@ -31,14 +39,22 @@ public class Hedgehog : Enemy
         }
     }
 
+    override protected void Warn() 
+    {
+        _isWarning = true;
+        _animator.SetBool("isWarning", _isWarning);
+    }
+
     override protected void Move() 
     {
-        base.rb2d.velocity = new Vector2((int) moveDirection, 0) * enemySpeed * Time.fixedDeltaTime;
+        if(!_isWarning)
+            base.rb2d.velocity = new Vector2((int) moveDirection, 0) * enemySpeed * Time.fixedDeltaTime;
+        else
+            base.rb2d.velocity = Vector2.zero;
     }
 
     override protected void Shoot() 
     {
-
         float angleIncrement = 360f / (float) shotCount;
 
         for(float currentAngle = 0f; currentAngle <=360; currentAngle += angleIncrement) 
@@ -47,6 +63,7 @@ public class Hedgehog : Enemy
             Vector2 bulletDirection = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
             newBullet.SetVelocity(bulletDirection);
         }
-
+        _isWarning = false;
+        _animator.SetBool("isWarning", _isWarning);
     }
 }

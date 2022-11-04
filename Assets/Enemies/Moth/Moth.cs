@@ -25,4 +25,8 @@ public class Moth : Enemy
     {
         //Moth does'nt shoot for now
     }
+
+    override protected void Warn() {
+        
+    }
 }

@@ -20,7 +20,10 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField, Range(0,100)]
     protected float enemySpeed = 1;
 
-    [SerializeField]
+    [SerializeField, Tooltip("The Interval in seconds after the Warning before the shot starts")]
+    protected float timeAfterWarning = 1f;
+
+    [SerializeField, Tooltip("The Interval in seconds between a Warning Starts")]
     protected float timeBetweenShots = 1f;
 
     [Tooltip("The target the enemy automatically looks at, leave empty for no looking")]
@@ -60,6 +63,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void Shoot();
 
+    protected abstract void Warn();
+
     protected void TakeDamage(int damage)
     {
         this.enemyHealth = this.enemyHealth - damage;
@@ -76,7 +81,10 @@ public abstract class Enemy : MonoBehaviour
     IEnumerator WaitForShot() 
     {
         while(true) {
+
             yield return new WaitForSecondsRealtime(timeBetweenShots);
+            Warn();
+            yield return new WaitForSecondsRealtime(timeAfterWarning);
             Shoot();
         }
     }
