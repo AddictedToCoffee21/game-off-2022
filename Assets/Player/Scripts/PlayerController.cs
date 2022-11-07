@@ -41,8 +41,9 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
     [Space(10)]
 
-    public int playerHealth;
-    public int playerDamage;
+    public int playerHealth = 10;
+    public int playerDamage = 1;
+    public float invincibleTime = 1f;
 
     [Space(10)]
     [Tooltip("The layers from which the player will take Damage")]
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     private SpriteRenderer _sr;
     private Animator _animator;
     private ParticleSystem _particleSystem;
+    private Collider2D _collider;
     
     private void Start()
     {
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         _sr = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _particleSystem = GetComponentInChildren<ParticleSystem>();
+        _collider = GetComponentInChildren<Collider2D>();
     }
 
     private void Update()
@@ -147,6 +150,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     {
 
         playerHealth -= damageDealer.GetDamage();
+        StartCoroutine("Invincibility");
         if(playerHealth <= 0)
         {
             KillPlayer();
@@ -169,7 +173,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
     private void DetectHit(Collider2D other)
     {
-        if((hitLayers.value & (1 << other.gameObject.layer)) > 0) 
+        if((hitLayers.value & (1 << other.gameObject.layer)) > 0)
         {
             IDealDamage damageDealer = other.gameObject.GetComponent<IDealDamage>();
 
@@ -181,6 +185,22 @@ public class PlayerController : MonoBehaviour, ITakeDamage
                 } 
             }
         }
+    }
+
+    private IEnumerator Invincibility() 
+    {
+        _collider.enabled = false;
+        float blinkTime = 0.1f;
+        float elapsedTime = 0;
+
+        while(elapsedTime < invincibleTime) {
+            _sr.color = Color.clear;
+            yield return new WaitForSecondsRealtime(blinkTime);
+            _sr.color = Color.white;
+            yield return new WaitForSecondsRealtime(blinkTime);
+            elapsedTime += blinkTime * 2;
+        }
+        _collider.enabled = true;
     }
 
 }
