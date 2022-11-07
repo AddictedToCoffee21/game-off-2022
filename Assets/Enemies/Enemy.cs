@@ -29,6 +29,8 @@ public abstract class Enemy : MonoBehaviour, ITakeDamage
     [Tooltip("The target the enemy automatically looks at, leave empty for no looking")]
     public Rigidbody2D lookTarget;
 
+    public LayerMask hitLayers;
+
     protected void Start()
     {
         this.rb2d = GetComponent<Rigidbody2D>();
@@ -46,6 +48,11 @@ public abstract class Enemy : MonoBehaviour, ITakeDamage
     {
         Move();
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+       DetectHit(other);
+    }
+
 
     protected void UpdateSpriteOrientation() 
     {
@@ -67,9 +74,24 @@ public abstract class Enemy : MonoBehaviour, ITakeDamage
 
     public void TakeDamage(IDealDamage damageDealer)
     {
+        Debug.Log("Enemy Health " + this.enemyHealth);
         this.enemyHealth = this.enemyHealth - damageDealer.GetDamage();
         if(this.enemyHealth <= 0) {
             Die();
+        }
+    }
+
+    private void DetectHit(Collider2D other)
+    {
+
+        if((hitLayers.value & (1 << other.gameObject.layer)) > 0)
+        {
+
+            IDealDamage damageDealer = other.gameObject.transform.parent.GetComponent<IDealDamage>();
+            if(damageDealer != null)
+            {
+                TakeDamage(damageDealer);            
+            }
         }
     }
 

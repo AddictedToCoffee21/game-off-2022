@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5029885463600679583}
   - component: {fileID: 5029885463600679578}
   - component: {fileID: 5572183397040856677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  destroyOnHit: 1
   _timeToDespawn: 10
 --- !u!58 &5572183397040856677
 CircleCollider2D:

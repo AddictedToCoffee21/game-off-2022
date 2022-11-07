@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, ITakeDamage
+public class PlayerController : MonoBehaviour, ITakeDamage, IDealDamage
 {
     public enum PlayerState
     {
@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     public int playerHealth = 10;
     public int playerDamage = 1;
     public float invincibleTime = 1f;
+    public float attackTime = 1f;
 
     [Space(10)]
     [Tooltip("The layers from which the player will take Damage")]
@@ -54,7 +55,8 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     private SpriteRenderer _sr;
     private Animator _animator;
     private ParticleSystem _particleSystem;
-    private Collider2D _collider;
+    [SerializeField] private Collider2D _hitboxCollider;
+    [SerializeField] private Collider2D _attackCollider;
     
     private void Start()
     {
@@ -62,7 +64,6 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         _sr = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _particleSystem = GetComponentInChildren<ParticleSystem>();
-        _collider = GetComponentInChildren<Collider2D>();
     }
 
     private void Update()
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2"))
         {
             _animator.SetTrigger("Attack");
+            StartAttack();
         }
     }
 
@@ -146,6 +148,12 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed;
     }
 
+    public void StartAttack() {
+        //TODO: Tie Attacktime to Animation with Events
+        StartCoroutine("Attack");
+    }
+
+
     public void TakeDamage(IDealDamage damageDealer) 
     {
 
@@ -189,7 +197,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
     private IEnumerator Invincibility() 
     {
-        _collider.enabled = false;
+        _hitboxCollider.enabled = false;
         float blinkTime = 0.1f;
         float elapsedTime = 0;
 
@@ -200,7 +208,13 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             yield return new WaitForSecondsRealtime(blinkTime);
             elapsedTime += blinkTime * 2;
         }
-        _collider.enabled = true;
+        _hitboxCollider.enabled = true;
+    }
+
+    private IEnumerator Attack() {
+        _attackCollider.enabled = true;
+        yield return new WaitForSecondsRealtime(attackTime);
+        _attackCollider.enabled = false;
     }
 
 }
