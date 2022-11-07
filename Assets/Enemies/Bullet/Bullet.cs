@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IDealDamage
 {
+    public int damage = 1;
+
     [SerializeField]
     private float _timeToDespawn = 10f;
 
@@ -35,5 +37,9 @@ public class Bullet : MonoBehaviour
 
     public void SetVelocity(Vector2 velocity) {
         _rb2d.velocity = velocity;
+    }
+
+    public void DealDamage(PlayerController player) {
+        player.DamagePlayer(damage);
     }
 }
