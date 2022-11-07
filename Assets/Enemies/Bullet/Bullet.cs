@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, IDealDamage
 {
     public int damage = 1;
+    public bool destroyOnHit = true;
 
     [SerializeField]
     private float _timeToDespawn = 10f;
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour, IDealDamage
     {
         _timeSinceAlive += Time.deltaTime;
         if(_timeSinceAlive >= _timeToDespawn) {
-            Destroy(this.gameObject);
+           DestroyBullet();
         }
     }
 
@@ -39,7 +40,12 @@ public class Bullet : MonoBehaviour, IDealDamage
         _rb2d.velocity = velocity;
     }
 
-    public void DealDamage(PlayerController player) {
-        player.DamagePlayer(damage);
+    public void DestroyBullet() {
+        Debug.Log("Test");
+        Destroy(this.gameObject);
+    }
+
+    public int GetDamage() {
+        return damage;
     }
 }

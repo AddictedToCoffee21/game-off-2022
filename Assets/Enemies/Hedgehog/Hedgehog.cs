@@ -61,7 +61,7 @@ public class Hedgehog : Enemy
         {
             Bullet newBullet = Instantiate(bullet, base.rb2d.position, Quaternion.identity);
             Vector2 bulletDirection = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
-            newBullet.SetVelocity(bulletDirection);
+            newBullet.SetVelocity(bulletDirection * 5);
         }
         _isWarning = false;
         _animator.SetBool("isWarning", _isWarning);

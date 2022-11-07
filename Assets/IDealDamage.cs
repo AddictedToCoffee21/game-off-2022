@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IDealDamage {
-    
-    public abstract void DealDamage(PlayerController player);
+
+    public abstract int GetDamage();
+
 }

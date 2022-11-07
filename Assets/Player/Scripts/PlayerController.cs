@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ITakeDamage
 {
     public enum PlayerState
     {
@@ -39,11 +39,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _horizontalMovement;
     [SerializeField] private float _verticalMovement;
 
-    [Space(10)] 
+    [Space(10)]
 
-    public int health;
-    public Collider2D hitbox;
-    [Tooltip("The layers from which the player will take damage")]
+    public int playerHealth;
+    public int playerDamage;
+
+    [Space(10)]
+    [Tooltip("The layers from which the player will take Damage")]
     public LayerMask hitLayers;
 
     private float _currentPlayerSpeed;
@@ -141,14 +143,19 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed;
     }
 
-    public void DamagePlayer(int damage) 
+    public void TakeDamage(IDealDamage damageDealer) 
     {
-        health -= damage;
-        Debug.Log("Health: " + health);
-        if(health <= 0) 
+
+        playerHealth -= damageDealer.GetDamage();
+        if(playerHealth <= 0)
         {
             KillPlayer();
         }
+
+    }
+
+    public int GetDamage() {
+        return playerDamage;
     }
 
     public void KillPlayer() 
@@ -164,11 +171,14 @@ public class PlayerController : MonoBehaviour
     {
         if((hitLayers.value & (1 << other.gameObject.layer)) > 0) 
         {
-            Debug.Log("hit detected");
             IDealDamage damageDealer = other.gameObject.GetComponent<IDealDamage>();
-            if(damageDealer != null) 
+
+            if(damageDealer != null)
             {
-                damageDealer.DealDamage(this);
+                TakeDamage(damageDealer);            
+                if(other.gameObject.GetComponent<Bullet>() != null) {
+                    other.gameObject.GetComponent<Bullet>().DestroyBullet();
+                } 
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, ITakeDamage
 {
 
     protected Rigidbody2D rb2d;
@@ -42,7 +42,7 @@ public abstract class Enemy : MonoBehaviour
         UpdateSpriteOrientation();
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
         Move();
     }
@@ -65,9 +65,9 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void Warn();
 
-    protected void TakeDamage(int damage)
+    public void TakeDamage(IDealDamage damageDealer)
     {
-        this.enemyHealth = this.enemyHealth - damage;
+        this.enemyHealth = this.enemyHealth - damageDealer.GetDamage();
         if(this.enemyHealth <= 0) {
             Die();
         }
