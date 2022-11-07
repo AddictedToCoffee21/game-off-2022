@@ -20,6 +20,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField, Range(0,100)]
     protected float enemySpeed = 1;
 
+    [SerializeField] 
+    protected bool canShoot;
+
     [SerializeField, Tooltip("The Interval in seconds after the Warning before the shot starts")]
     protected float timeAfterWarning = 1f;
 
@@ -27,14 +30,15 @@ public abstract class Enemy : MonoBehaviour
     protected float timeBetweenShots = 1f;
 
     [Tooltip("The target the enemy automatically looks at, leave empty for no looking")]
-    public Rigidbody2D lookTarget;
+    public Rigidbody2D target;
 
     protected void Start()
     {
         this.rb2d = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
 
-        StartCoroutine("WaitForShot");
+        if(canShoot)
+            StartCoroutine("WaitForShot");
     }
 
     protected void Update()
@@ -49,10 +53,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected void UpdateSpriteOrientation() 
     {
-        if(!lookTarget)
+        if(!target)
             return;
         
-        if(lookTarget.position.x > rb2d.position.x) {
+        if(target.position.x > rb2d.position.x) {
             spriteRenderer.flipX = true;
         } else {
             spriteRenderer.flipX = false;

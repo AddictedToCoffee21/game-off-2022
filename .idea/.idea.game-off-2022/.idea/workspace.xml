@@ -3,17 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="383e27d7-9a69-43d1-acbc-1f4256847d9a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.game-off-2022/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.game-off-2022/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.game-off-2022/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.game-off-2022/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.game-off-2022/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.game-off-2022/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/Butterfly-Sheet-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/Butterfly-Sheet-Sheet.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/ButterflyAnimation.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/ButterflyAnimation.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerAnimatorController.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerAnimatorController.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Enemies/Enemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +19,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Enemies/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Enemies/Fly/Fly.cs" />
         <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerController.cs" />
       </list>
     </option>
@@ -71,6 +66,8 @@
       <updated>1667424936500</updated>
       <workItem from="1667424945447" duration="3721000" />
       <workItem from="1667494257282" duration="4199000" />
+      <workItem from="1667829671887" duration="675000" />
+      <workItem from="1667830369102" duration="664000" />
     </task>
     <servers />
   </component>
