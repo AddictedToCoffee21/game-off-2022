@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat("AnimationSpeed", 1f);
             if(playerState == PlayerState.Butterfly)
             {
-                _currentPlayerSpeed += butterflyAcceleration + Time.fixedDeltaTime;
+                _currentPlayerSpeed += 100 *butterflyAcceleration * Time.fixedDeltaTime;
 
                 if (_currentPlayerSpeed >= butterflySpeed)
                 {
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                _currentPlayerSpeed += beeAcceleration + Time.fixedDeltaTime;
+                _currentPlayerSpeed += 100 * beeAcceleration * Time.fixedDeltaTime;
 
                 if (_currentPlayerSpeed >= beeSpeed)
                 {
@@ -130,6 +130,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed;
+        _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed * Time.fixedDeltaTime * 100;
     }
 }
