@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour, IDealDamage, ITakeDamage
+public class Bullet : MonoBehaviour
 {
     public int damage = 1;
     public bool destroyOnHit = true;
@@ -47,9 +47,5 @@ public class Bullet : MonoBehaviour, IDealDamage, ITakeDamage
 
     public int GetDamage() {
         return damage;
-    }
-
-    public void TakeDamage(IDealDamage damageDealer) {
-        
     }
 }

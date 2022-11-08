@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
-public abstract class Enemy : MonoBehaviour, ITakeDamage
+public abstract class Enemy : MonoBehaviour
 {
 
     protected Rigidbody2D rb2d;
@@ -49,11 +49,6 @@ public abstract class Enemy : MonoBehaviour, ITakeDamage
         Move();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-       DetectHit(other);
-    }
-
-
     protected void UpdateSpriteOrientation() 
     {
         if(!lookTarget)
@@ -72,26 +67,11 @@ public abstract class Enemy : MonoBehaviour, ITakeDamage
 
     protected abstract void Warn();
 
-    public void TakeDamage(IDealDamage damageDealer)
+    public void TakeDamage(DamageDealer damageDealer)        
     {
-        Debug.Log("Enemy Health " + this.enemyHealth);
         this.enemyHealth = this.enemyHealth - damageDealer.GetDamage();
         if(this.enemyHealth <= 0) {
             Die();
-        }
-    }
-
-    private void DetectHit(Collider2D other)
-    {
-
-        if((hitLayers.value & (1 << other.gameObject.layer)) > 0)
-        {
-
-            IDealDamage damageDealer = other.gameObject.transform.parent.GetComponent<IDealDamage>();
-            if(damageDealer != null)
-            {
-                TakeDamage(damageDealer);            
-            }
         }
     }
 

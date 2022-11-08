@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour, ITakeDamage, IDealDamage
+
+public class PlayerController : MonoBehaviour
 {
     public enum PlayerState
     {
@@ -153,8 +155,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage, IDealDamage
         StartCoroutine("Attack");
     }
 
-
-    public void TakeDamage(IDealDamage damageDealer) 
+    public void TakeDamage(DamageDealer damageDealer) 
     {
 
         playerHealth -= damageDealer.GetDamage();
@@ -173,26 +174,6 @@ public class PlayerController : MonoBehaviour, ITakeDamage, IDealDamage
     public void KillPlayer() 
     {
         Debug.Log("Player Dead");
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-       DetectHit(other);
-    }
-
-    private void DetectHit(Collider2D other)
-    {
-        if((hitLayers.value & (1 << other.gameObject.layer)) > 0)
-        {
-            IDealDamage damageDealer = other.gameObject.GetComponent<IDealDamage>();
-
-            if(damageDealer != null)
-            {
-                TakeDamage(damageDealer);            
-                if(other.gameObject.GetComponent<Bullet>() != null) {
-                    other.gameObject.GetComponent<Bullet>().DestroyBullet();
-                } 
-            }
-        }
     }
 
     private IEnumerator Invincibility() 
