@@ -33,7 +33,7 @@ public class Fly : Enemy
     }
 
     override protected void Move() 
-    { 
+    {
         base.rb2d.velocity = (target.position - new Vector2(rb2d.position.x, rb2d.position.y)).normalized * enemySpeed * Time.fixedDeltaTime;
     }
 

@@ -5363,7 +5363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb693c2dd946e74a9be30e830b7ab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 152244263}
   playerRigidbody2D: {fileID: 554220556}
   fly: {fileID: 1478142795517977689, guid: c36414b7c2598104ca89e556b6555abc, type: 3}
 --- !u!4 &564523915
