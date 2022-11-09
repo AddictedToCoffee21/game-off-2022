@@ -32,6 +32,8 @@ public abstract class Enemy : MonoBehaviour
     [Tooltip("The target the enemy automatically looks at, leave empty for no looking")]
     public Rigidbody2D target;
 
+    public LayerMask hitLayers;
+
     protected void Start()
     {
         this.rb2d = GetComponent<Rigidbody2D>();
@@ -46,7 +48,7 @@ public abstract class Enemy : MonoBehaviour
         UpdateSpriteOrientation();
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
         Move();
     }
@@ -69,9 +71,9 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void Warn();
 
-    protected void TakeDamage(int damage)
+    public void TakeDamage(DamageDealer damageDealer)        
     {
-        this.enemyHealth = this.enemyHealth - damage;
+        this.enemyHealth = this.enemyHealth - damageDealer.GetDamage();
         if(this.enemyHealth <= 0) {
             Die();
         }

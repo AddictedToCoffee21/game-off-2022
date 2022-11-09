@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,11 +40,26 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _horizontalMovement;
     [SerializeField] private float _verticalMovement;
+
+    [Space(10)]
+
+    public int playerHealth = 10;
+    public int playerDamage = 1;
+    public float invincibleTime = 1f;
+    public Color blinkColor = Color.clear;
+    public float attackTime = 1f;
+
+    [Space(10)]
+    [Tooltip("The layers from which the player will take Damage")]
+    public LayerMask hitLayers;
+
     private float _currentPlayerSpeed;
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
     private Animator _animator;
     private ParticleSystem _particleSystem;
+    [SerializeField] private Collider2D _hitboxCollider;
+    [SerializeField] private Collider2D _attackCollider;
     
     private void Start()
     {
@@ -85,6 +102,7 @@ public class PlayerController : MonoBehaviour
         if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2"))
         {
             _animator.SetTrigger("Attack");
+            StartAttack();
         }
     }
 
@@ -132,4 +150,53 @@ public class PlayerController : MonoBehaviour
         
         _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed * Time.fixedDeltaTime * 100;
     }
+
+    public void StartAttack() {
+        //TODO: Tie Attacktime to Animation with Events
+        StartCoroutine("Attack");
+    }
+
+    public void TakeDamage(DamageDealer damageDealer) 
+    {
+
+        playerHealth -= damageDealer.GetDamage();
+        StartCoroutine("Invincibility");
+        if(playerHealth <= 0)
+        {
+            KillPlayer();
+        }
+
+    }
+
+    public int GetDamage() {
+        return playerDamage;
+    }
+
+    public void KillPlayer() 
+    {
+        Debug.Log("Player Dead");
+    }
+
+    private IEnumerator Invincibility() 
+    {
+        _hitboxCollider.enabled = false;
+        float blinkTime = 0.1f;
+        float elapsedTime = 0;
+
+        while(elapsedTime < invincibleTime) {
+            _sr.color = blinkColor;
+            yield return new WaitForSecondsRealtime(blinkTime);
+            _sr.color = Color.white;
+            yield return new WaitForSecondsRealtime(blinkTime);
+            elapsedTime += blinkTime * 2;
+        }
+        _hitboxCollider.enabled = true;
+    }
+
+    private IEnumerator Attack() {
+        _attackCollider.enabled = true;
+        yield return new WaitForSecondsRealtime(attackTime);
+        _attackCollider.enabled = false;
+    }
+
 }
