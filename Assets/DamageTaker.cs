@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class DamageTaker : MonoBehaviour
 {
     public LayerMask hitLayers;
-    public Collider2D hitbox;
 
     [System.Serializable]
     public class DamageEvent : UnityEvent<DamageDealer> {

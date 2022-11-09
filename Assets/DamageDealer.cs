@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class DamageDealer : MonoBehaviour
 {
-    public Collider2D hitbox;
     public UnityEvent OnHit;
     [SerializeField] private int damage = 1;
 
