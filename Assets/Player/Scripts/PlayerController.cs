@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public int playerHealth = 10;
     public int playerDamage = 1;
     public float invincibleTime = 1f;
+    public Color blinkColor = Color.clear;
     public float attackTime = 1f;
 
     [Space(10)]
@@ -183,7 +184,7 @@ public class PlayerController : MonoBehaviour
         float elapsedTime = 0;
 
         while(elapsedTime < invincibleTime) {
-            _sr.color = Color.clear;
+            _sr.color = blinkColor;
             yield return new WaitForSecondsRealtime(blinkTime);
             _sr.color = Color.white;
             yield return new WaitForSecondsRealtime(blinkTime);
