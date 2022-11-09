@@ -21,6 +21,9 @@
             <e p="Moth.cs" t="Include" />
           </e>
         </e>
+        <e p="EnemySpawnSystem" t="Include">
+          <e p="EnemySpawnSystem.cs" t="Include" />
+        </e>
         <e p="FigurSkript.cs" t="Include" />
         <e p="Player" t="Include">
           <e p="Scripts" t="Include">
