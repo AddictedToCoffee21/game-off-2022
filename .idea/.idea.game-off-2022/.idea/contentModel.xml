@@ -6,6 +6,8 @@
     <e p="C:\Users\Sebastian Geheeb\Desktop\Online Gamejam\Git\game-off-2022" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="DamageDealer.cs" t="Include" />
+        <e p="DamageTaker.cs" t="Include" />
         <e p="Enemies" t="Include">
           <e p="Bullet" t="Include">
             <e p="Bullet.cs" t="Include" />
