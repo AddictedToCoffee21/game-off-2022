@@ -5366,6 +5366,9 @@ MonoBehaviour:
   playerCamera: {fileID: 152244263}
   playerRigidbody2D: {fileID: 554220556}
   fly: {fileID: 1478142795517977689, guid: c36414b7c2598104ca89e556b6555abc, type: 3}
+  enemyWaves:
+  - {fileID: 11400000, guid: 5c67aeb2be6ac4d4a809cad215bc9832, type: 2}
+  maxEnemyCount: 5
 --- !u!4 &564523915
 Transform:
   m_ObjectHideFlags: 0
