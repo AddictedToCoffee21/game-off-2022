@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 5029885463600679580}
   - component: {fileID: 5029885463600679583}
   - component: {fileID: 5029885463600679578}
-  m_Layer: 0
+  - component: {fileID: 5572183397040856677}
+  - component: {fileID: 6684012964549041595}
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,4 +121,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53218bb2aed94e24b82c965802d6abd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeToKill: 10
+  damage: 1
+  destroyOnHit: 1
+  _timeToDespawn: 10
+--- !u!58 &5572183397040856677
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029885463600679582}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
+--- !u!114 &6684012964549041595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029885463600679582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2451e97be0359344d85568e09e51ed4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitbox: {fileID: 5572183397040856677}
+  OnHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5029885463600679578}
+        m_TargetAssemblyTypeName: Bullet, Assembly-CSharp
+        m_MethodName: DestroyBullet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  damage: 1
