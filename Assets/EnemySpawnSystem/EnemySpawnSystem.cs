@@ -20,6 +20,7 @@ public class EnemySpawnSystem : MonoBehaviour
     [Space(10)] public List<EnemyWave> enemyWaves;
     public int maxEnemyCount;
     public int timeBetweenEnemySpawn = 1;
+    public int timeBetweenWaves = 5;
 
 
     private List<Queue<GameObject>> _enemyWaveQueue;
@@ -43,6 +44,7 @@ public class EnemySpawnSystem : MonoBehaviour
     private int _maxTime;
     private GameState _currentGameState;
     private bool _canSpawnEnemy;
+    private float _currentTimeBetweenWaves;
 
     private void Start()
     {
@@ -87,8 +89,6 @@ public class EnemySpawnSystem : MonoBehaviour
         _yOuterBorderDown = _yInnerBorderDown - 3;
         _yOuterBorderUp = _yInnerBorderUp + 3;
         
-        
-        
         if (transform.childCount < maxEnemyCount)
             _currentTime += Time.deltaTime;
 
@@ -129,7 +129,17 @@ public class EnemySpawnSystem : MonoBehaviour
 
             case GameState.AfterWave:
             {
-                Debug.Log("over");
+                Debug.Log("After wave");
+                
+                _currentTimeBetweenWaves += Time.deltaTime;
+
+                if (_currentTimeBetweenWaves >= timeBetweenWaves)
+                {
+                    _currentTimeBetweenWaves = 0;
+                    _currentWave++;
+                    _currentGameState = GameState.InWave;
+                }
+                
                 break;
             }
         }
