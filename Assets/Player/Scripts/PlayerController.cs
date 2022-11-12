@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
 
     public int playerHealth = 10;
+    public int playerMaxHealth = 10;
     public int playerDamage = 1;
     public float invincibleTime = 1f;
     public Color blinkColor = Color.clear;
@@ -60,6 +61,9 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem _particleSystem;
     [SerializeField] private Collider2D _hitboxCollider;
     [SerializeField] private Collider2D _attackCollider;
+
+    [Space(10)]
+    public Healthbar healthbar;
     
     private void Start()
     {
@@ -67,6 +71,8 @@ public class PlayerController : MonoBehaviour
         _sr = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _particleSystem = GetComponentInChildren<ParticleSystem>();
+
+        healthbar.UpdateHealthDisplay(playerHealth, playerMaxHealth);
     }
 
     private void Update()
@@ -160,7 +166,11 @@ public class PlayerController : MonoBehaviour
     {
 
         playerHealth -= damageDealer.GetDamage();
+        
+        healthbar.UpdateHealthDisplay(playerHealth, playerMaxHealth);
+
         StartCoroutine("Invincibility");
+
         if(playerHealth <= 0)
         {
             KillPlayer();
