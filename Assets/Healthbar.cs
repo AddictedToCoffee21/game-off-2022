@@ -23,7 +23,7 @@ public class Healthbar : MonoBehaviour
             {
                 if (i < hearts.Length) 
                 {
-                    hearts[i] = heartFull;
+                    hearts[i].sprite = heartFull.sprite;
                 }
                 else
                 {
@@ -34,7 +34,7 @@ public class Healthbar : MonoBehaviour
             {
                 if (i < hearts.Length) 
                 {
-                    hearts[i] = heartEmpty;
+                    hearts[i].sprite = heartEmpty.sprite;
                 }
                 else 
                 {

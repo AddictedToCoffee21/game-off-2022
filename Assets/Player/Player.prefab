@@ -225,8 +225,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1485613115
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1727195138, guid: d08bb429b4d950543b79294e371dc0ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5295,6 +5295,7 @@ MonoBehaviour:
   _horizontalMovement: 0
   _verticalMovement: 0
   playerHealth: 10
+  playerMaxHealth: 10
   playerDamage: 1
   invincibleTime: 1
   blinkColor: {r: 1, g: 0, b: 0, a: 0.5019608}
@@ -5304,3 +5305,4 @@ MonoBehaviour:
     m_Bits: 128
   _hitboxCollider: {fileID: 8169444931369840938}
   _attackCollider: {fileID: 8169444931034401950}
+  healthbar: {fileID: 0}
