@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Moth : Enemy
 {   
-    private float x = 0;
-    private float y = 0;
 
-    private Vector2 lastPosition = Vector2.zero;
-    private Vector2 currentPosition = Vector2.zero;
-
+    [Space(10)]
     public float periodLength = 0.2f;
     public float amplitude = 1f;
     public float bulletSpeed = 1f;
 
+    private float _x = 0;
+    private float _y = 0;
+
+    private Vector2 _lastPosition = Vector2.zero;
+    private Vector2 _currentPosition = Vector2.zero;
+
     private Vector2 _startPosition;
-    private Vector2 _playerTarget;
 
     public Bullet bullet;
 
@@ -23,42 +24,35 @@ public class Moth : Enemy
     {
         base.Start();
         _startPosition = base.rb2d.position;
-        
-        //TODO: Replace with better Solution
-        _playerTarget = GameObject.Find("Player").GetComponent<Rigidbody2D>().position;
-        base.target = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
 
     override protected void Move() 
     {
         //Moth moves in Sin Curve
-        if(x > Mathf.PI * 2)
+        if(_x > Mathf.PI * 2)
         {
-            x = 0;
+            _x = 0;
         } else 
         {
-            x += Time.fixedDeltaTime;
+            _x += Time.fixedDeltaTime;
         }
-        y = amplitude * Mathf.Sin((1.0f/periodLength) * x);
-        currentPosition = new Vector2(x,y);
-        Vector2 moveDirection = currentPosition - lastPosition;
+        _y = amplitude * Mathf.Sin((1.0f/periodLength) * _x);
+        _currentPosition = new Vector2(_x,_y);
+        Vector2 moveDirection = _currentPosition - _lastPosition;
 
-        //Vector to Player
-        _playerTarget = GameObject.Find("Player").GetComponent<Rigidbody2D>().position;
-        float angleToPlayer = Vector2.SignedAngle(_playerTarget - base.rb2d.position, Vector2.right);
-        Debug.Log(angleToPlayer);
+        float angleToPlayer = Vector2.SignedAngle(base.target.position - base.rb2d.position, Vector2.right);
         moveDirection = this.rot(moveDirection, -angleToPlayer);
 
 
         base.rb2d.velocity = moveDirection.normalized * base.enemySpeed;
 
-        lastPosition = currentPosition;
+        _lastPosition = _currentPosition;
     }
 
     override protected void Shoot() 
     {
         Bullet newBullet = Instantiate(bullet, base.rb2d.position, Quaternion.identity);
-        Vector2 bulletDirection = _playerTarget - base.rb2d.position;
+        Vector2 bulletDirection = base.target.position - base.rb2d.position;
         newBullet.SetVelocity(bulletDirection.normalized * bulletSpeed);
     }
 
