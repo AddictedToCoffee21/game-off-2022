@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _verticalMovement = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
             playerState = (PlayerState)(((int) playerState + 1) % 2);
             _particleSystem.Play();
@@ -105,11 +105,59 @@ public class PlayerController : MonoBehaviour
             _animator.runtimeAnimatorController = animatorControllerBee;
         }
 
+        /*
         if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2"))
         {
             _animator.SetTrigger("Attack");
             StartAttack();
         }
+        */
+
+
+        if(playerState == PlayerState.Bee)
+        {
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) 
+            {
+                StartCoroutine("ActivateAttack", Dir.Left);
+            }
+            else if(Input.GetKeyDown(KeyCode.RightArrow)) 
+            {
+                StartCoroutine("ActivateAttack", Dir.Right);
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow)) 
+            {
+                StartCoroutine("ActivateAttack", Dir.Down);
+            }
+            else if(Input.GetKeyDown(KeyCode.UpArrow)) 
+            {
+                StartCoroutine("ActivateAttack", Dir.Top);
+            }
+        }
+    }
+
+    public enum Dir {
+        Left,
+        Right,
+        Top,
+        Down
+    }
+
+    public GameObject top,left,right,down;
+
+    public IEnumerator ActivateAttack(Dir dir) {
+
+        switch(dir) {
+            case Dir.Left: left.SetActive(true); break;
+            case Dir.Right: right.SetActive(true);  break;
+            case Dir.Top: top.SetActive(true); break;
+            case Dir.Down: down.SetActive(true); break;
+        }
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        right.SetActive(false);
+        left.SetActive(false);
+        top.SetActive(false);
+        down.SetActive(false);
     }
 
     private void FixedUpdate()

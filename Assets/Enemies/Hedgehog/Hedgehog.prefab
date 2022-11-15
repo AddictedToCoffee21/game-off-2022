@@ -53,14 +53,14 @@ MonoBehaviour:
   enemySpeed: 55.4
   canShoot: 1
   timeAfterWarning: 1
-  timeBetweenShots: 1
+  timeBetweenShots: 5
   target: {fileID: 0}
   hitLayers:
     serializedVersion: 2
     m_Bits: 256
   moveDirection: 1
   bullet: {fileID: 5029885463600679578, guid: 0cc6a423071e0ed4991743923e434d42, type: 3}
-  shotCount: 8
+  shotCount: 32
   dangerSprite: {fileID: 21300000, guid: bce0dbb228c71de41badab58804a0168, type: 3}
 --- !u!212 &2178025782023476298
 SpriteRenderer:

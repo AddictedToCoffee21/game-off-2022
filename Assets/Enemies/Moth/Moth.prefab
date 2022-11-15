@@ -128,7 +128,7 @@ MonoBehaviour:
   enemySpeed: 5
   canShoot: 1
   timeAfterWarning: 0
-  timeBetweenShots: 0.5
+  timeBetweenShots: 1.5
   target: {fileID: 0}
   hitLayers:
     serializedVersion: 2
