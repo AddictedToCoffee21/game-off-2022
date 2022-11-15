@@ -26,6 +26,7 @@ public class Moth : Enemy
         
         //TODO: Replace with better Solution
         _playerTarget = GameObject.Find("Player").GetComponent<Rigidbody2D>().position;
+        base.target = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
 
     override protected void Move() 
