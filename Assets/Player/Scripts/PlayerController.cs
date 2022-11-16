@@ -135,7 +135,17 @@ public class PlayerController : MonoBehaviour
             {
                 mouseHitbox.transform.rotation = Quaternion.Euler(0,0, - rotAngle);
                 mouseHitbox.transform.position = (Vector2) mouseHitbox.transform.position + vecToMouse * 0.2f;
-                StartCoroutine("ActivateAttackMouse");
+                if(isShooting) 
+                {
+                    Bullet newStinger = GameObject.Instantiate(stinger, this.transform.position, Quaternion.identity);
+                    newStinger.gameObject.layer = LayerMask.NameToLayer("PlayerAttack");
+                    newStinger.SetVelocity(vecToMouse * 5f);
+                }
+                else 
+                {
+                    StartCoroutine("ActivateAttackMouse");
+                }
+                
             }
 
             
@@ -164,9 +174,13 @@ public class PlayerController : MonoBehaviour
     }
 
     public GameObject mouseHitbox;
+    public Bullet stinger;
 
     public bool isSwingAttack = true;
+    public bool isShooting = true;
     public float swingAngle = 15f;
+
+
 
     public enum Dir {
         Left,
