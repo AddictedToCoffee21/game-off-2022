@@ -113,6 +113,34 @@ public class PlayerController : MonoBehaviour
         }
         */
 
+        if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2"))
+        {
+            Vector2 mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            Vector2 vecToMouse = (mousePos - (Vector2) this.transform.position).normalized;
+
+            float rotAngle = Vector2.SignedAngle(Vector2.right, vecToMouse);
+
+            mouseHitbox.transform.rotation = Quaternion.Euler(0,0, - rotAngle);
+            mouseHitbox.transform.position = (Vector2) mouseHitbox.transform.position + vecToMouse * 0.5f;
+
+            if(isSwingAttack) 
+            {
+                mouseHitbox.transform.rotation = Quaternion.Euler(0,0, - rotAngle - swingAngle);
+                mouseHitbox.transform.position = (Vector2) mouseHitbox.transform.position + vecToMouse * 0.2f;
+                StartCoroutine("ActivateAttackMouseSwing");
+            }
+            else 
+            {
+                mouseHitbox.transform.rotation = Quaternion.Euler(0,0, - rotAngle);
+                mouseHitbox.transform.position = (Vector2) mouseHitbox.transform.position + vecToMouse * 0.2f;
+                StartCoroutine("ActivateAttackMouse");
+            }
+
+            
+        }
+
 
         if(playerState == PlayerState.Bee)
         {
@@ -135,6 +163,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public GameObject mouseHitbox;
+
+    public bool isSwingAttack = true;
+    public float swingAngle = 15f;
+
     public enum Dir {
         Left,
         Right,
@@ -143,6 +176,36 @@ public class PlayerController : MonoBehaviour
     }
 
     public GameObject top,left,right,down;
+
+    float angleReached = 0f;
+
+    public IEnumerator ActivateAttackMouseSwing() {
+
+        mouseHitbox.SetActive(true);
+
+        while(Mathf.Abs(angleReached) <= Mathf.Abs(swingAngle * 2)) {
+            mouseHitbox.transform.RotateAround(this.transform.position, Vector3.forward, - 200 * Time.deltaTime);
+            angleReached += (-200 * Time.deltaTime);
+            yield return null;
+        }
+
+        angleReached = 0f;
+        mouseHitbox.SetActive(false);
+        mouseHitbox.transform.rotation = Quaternion.Euler(0,0,0);
+        mouseHitbox.transform.position = this.transform.position;
+
+
+
+    }
+
+    public IEnumerator ActivateAttackMouse() {
+
+        mouseHitbox.SetActive(true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        mouseHitbox.SetActive(false);
+        mouseHitbox.transform.rotation = Quaternion.Euler(0,0,0);
+        mouseHitbox.transform.position = this.transform.position;
+    }
 
     public IEnumerator ActivateAttack(Dir dir) {
 

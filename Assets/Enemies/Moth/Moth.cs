@@ -32,7 +32,8 @@ public class Moth : Enemy
         if(_x > Mathf.PI * 2)
         {
             _x = 0;
-        } else 
+        } 
+        else 
         {
             _x += Time.fixedDeltaTime;
         }
