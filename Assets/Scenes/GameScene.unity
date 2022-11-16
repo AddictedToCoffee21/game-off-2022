@@ -489,7 +489,7 @@ PrefabInstance:
     - target: {fileID: 8169444931588369998, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 904ac9994fdc4324e92efc8f0afe869d, type: 3}
+      objectReference: {fileID: -490101552, guid: b8f30948dd2cd124db861688b7281827, type: 3}
     - target: {fileID: 8169444931588370000, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -576,7 +576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8169444932762844788, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: isSwingAttack
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8169444932762844788, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: playerMaxHealth
@@ -957,8 +957,7 @@ MonoBehaviour:
   playerRigidbody2D: {fileID: 1065584594}
   fly: {fileID: 1478142795517977689, guid: c36414b7c2598104ca89e556b6555abc, type: 3}
   enemyWaves:
-  - {fileID: 11400000, guid: 5a4c87617301a184fbb3edb7308334a3, type: 2}
-  - {fileID: 11400000, guid: 5c67aeb2be6ac4d4a809cad215bc9832, type: 2}
+  - {fileID: 11400000, guid: daae7d497c204d34596c94b487d5f337, type: 2}
   maxEnemyCount: 5
   timeBetweenEnemySpawn: 1
 --- !u!114 &1053292546 stripped

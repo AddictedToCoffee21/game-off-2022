@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c3138dfb967be47b6a6b378a4142b7, type: 3}
   m_Name: Wave 3
   m_EditorClassIdentifier: 
-  enemies: []
+  enemies:
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}

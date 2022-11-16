@@ -135,7 +135,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BeeAnimation
-  m_Speed: 0.3
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7584650499650499466}
@@ -148,7 +148,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bef2717f382b3f54cbaca0d9a0443d66, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8ee5641a9ddd02847bc0e91735f2c527, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
