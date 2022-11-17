@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
     [Space(10)]
     public Healthbar healthbar;
+    public Bullet stinger;
     
     private void Start()
     {
@@ -105,136 +106,10 @@ public class PlayerController : MonoBehaviour
             _animator.runtimeAnimatorController = animatorControllerBee;
         }
 
-        /*
         if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2"))
         {
-            _animator.SetTrigger("Attack");
             StartAttack();
         }
-        */
-
-        if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2"))
-        {
-            Vector2 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
-            Vector2 vecToMouse = (mousePos - (Vector2) this.transform.position).normalized;
-
-            float rotAngle = Vector2.SignedAngle(Vector2.right, vecToMouse);
-
-            mouseHitbox.transform.rotation = Quaternion.Euler(0,0, - rotAngle);
-            mouseHitbox.transform.position = (Vector2) mouseHitbox.transform.position + vecToMouse * 0.5f;
-
-            if(isSwingAttack) 
-            {
-                mouseHitbox.transform.rotation = Quaternion.Euler(0,0, - rotAngle - swingAngle);
-                mouseHitbox.transform.position = (Vector2) mouseHitbox.transform.position + vecToMouse * 0.2f;
-                StartCoroutine("ActivateAttackMouseSwing");
-            }
-            else 
-            {
-                mouseHitbox.transform.rotation = Quaternion.Euler(0,0, - rotAngle);
-                mouseHitbox.transform.position = (Vector2) mouseHitbox.transform.position + vecToMouse * 0.2f;
-                if(isShooting) 
-                {
-                    Bullet newStinger = GameObject.Instantiate(stinger, this.transform.position, Quaternion.identity);
-                    newStinger.gameObject.layer = LayerMask.NameToLayer("PlayerAttack");
-                    newStinger.SetVelocity(vecToMouse * 5f);
-                }
-                else 
-                {
-                    StartCoroutine("ActivateAttackMouse");
-                }
-                
-            }
-
-            
-        }
-
-
-        if(playerState == PlayerState.Bee)
-        {
-            if(Input.GetKeyDown(KeyCode.LeftArrow)) 
-            {
-                StartCoroutine("ActivateAttack", Dir.Left);
-            }
-            else if(Input.GetKeyDown(KeyCode.RightArrow)) 
-            {
-                StartCoroutine("ActivateAttack", Dir.Right);
-            }
-            else if(Input.GetKeyDown(KeyCode.DownArrow)) 
-            {
-                StartCoroutine("ActivateAttack", Dir.Down);
-            }
-            else if(Input.GetKeyDown(KeyCode.UpArrow)) 
-            {
-                StartCoroutine("ActivateAttack", Dir.Top);
-            }
-        }
-    }
-
-    public GameObject mouseHitbox;
-    public Bullet stinger;
-
-    public bool isSwingAttack = true;
-    public bool isShooting = true;
-    public float swingAngle = 15f;
-
-
-
-    public enum Dir {
-        Left,
-        Right,
-        Top,
-        Down
-    }
-
-    public GameObject top,left,right,down;
-
-    float angleReached = 0f;
-
-    public IEnumerator ActivateAttackMouseSwing() {
-
-        mouseHitbox.SetActive(true);
-
-        while(Mathf.Abs(angleReached) <= Mathf.Abs(swingAngle * 2)) {
-            mouseHitbox.transform.RotateAround(this.transform.position, Vector3.forward, - 200 * Time.deltaTime);
-            angleReached += (-200 * Time.deltaTime);
-            yield return null;
-        }
-
-        angleReached = 0f;
-        mouseHitbox.SetActive(false);
-        mouseHitbox.transform.rotation = Quaternion.Euler(0,0,0);
-        mouseHitbox.transform.position = this.transform.position;
-
-
-
-    }
-
-    public IEnumerator ActivateAttackMouse() {
-
-        mouseHitbox.SetActive(true);
-        yield return new WaitForSecondsRealtime(0.5f);
-        mouseHitbox.SetActive(false);
-        mouseHitbox.transform.rotation = Quaternion.Euler(0,0,0);
-        mouseHitbox.transform.position = this.transform.position;
-    }
-
-    public IEnumerator ActivateAttack(Dir dir) {
-
-        switch(dir) {
-            case Dir.Left: left.SetActive(true); break;
-            case Dir.Right: right.SetActive(true);  break;
-            case Dir.Top: top.SetActive(true); break;
-            case Dir.Down: down.SetActive(true); break;
-        }
-        yield return new WaitForSecondsRealtime(0.5f);
-
-        right.SetActive(false);
-        left.SetActive(false);
-        top.SetActive(false);
-        down.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -283,8 +158,19 @@ public class PlayerController : MonoBehaviour
     }
 
     public void StartAttack() {
-        //TODO: Tie Attacktime to Animation with Events
-        StartCoroutine("Attack");
+        
+        Vector2 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        Vector2 vecToMouse = (mousePos - (Vector2) this.transform.position).normalized;
+
+        float rotAngle = Vector2.SignedAngle(Vector2.right, vecToMouse);
+
+        Bullet newStinger = GameObject.Instantiate(stinger, this.transform.position, Quaternion.identity);
+        newStinger.transform.rotation = Quaternion.Euler(0,0,rotAngle);
+        newStinger.SetVelocity(_rb.velocity + vecToMouse * 5f);
+        newStinger.SetDespawnTime(0.2f);
+
     }
 
     public void TakeDamage(DamageDealer damageDealer) 
@@ -326,12 +212,6 @@ public class PlayerController : MonoBehaviour
             elapsedTime += blinkTime * 2;
         }
         _hitboxCollider.enabled = true;
-    }
-
-    private IEnumerator Attack() {
-        _attackCollider.enabled = true;
-        yield return new WaitForSecondsRealtime(attackTime);
-        _attackCollider.enabled = false;
     }
 
 }

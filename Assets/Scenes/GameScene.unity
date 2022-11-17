@@ -561,11 +561,15 @@ PrefabInstance:
     - target: {fileID: 8169444932762844788, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: stinger
       value: 
-      objectReference: {fileID: 5029885463600679578, guid: 0cc6a423071e0ed4991743923e434d42, type: 3}
+      objectReference: {fileID: 4797112343614158995, guid: de33e64e1995e604f896bb49830f4d65, type: 3}
     - target: {fileID: 8169444932762844788, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1053292546}
+    - target: {fileID: 8169444932762844788, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
+      propertyPath: isShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8169444932762844788, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: swingAngle
       value: 50
@@ -961,7 +965,7 @@ MonoBehaviour:
   playerRigidbody2D: {fileID: 1065584594}
   fly: {fileID: 1478142795517977689, guid: c36414b7c2598104ca89e556b6555abc, type: 3}
   enemyWaves:
-  - {fileID: 11400000, guid: daae7d497c204d34596c94b487d5f337, type: 2}
+  - {fileID: 11400000, guid: 5a4c87617301a184fbb3edb7308334a3, type: 2}
   maxEnemyCount: 5
   timeBetweenEnemySpawn: 1
 --- !u!114 &1053292546 stripped

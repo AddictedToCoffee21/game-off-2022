@@ -45,6 +45,10 @@ public class Bullet : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void SetDespawnTime(float time) {
+        _timeToDespawn = time;
+    }
+
     public int GetDamage() {
         return damage;
     }
