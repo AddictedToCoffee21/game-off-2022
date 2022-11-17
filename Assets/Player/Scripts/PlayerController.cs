@@ -126,7 +126,6 @@ public class PlayerController : MonoBehaviour
 
         if (_horizontalMovement == 0 && _verticalMovement == 0)
         {
-            Debug.Log("TRUE");
             _currentPlayerSpeed = 0;
 
             _animator.SetFloat("AnimationSpeed", 0.7f);
@@ -167,10 +166,8 @@ public class PlayerController : MonoBehaviour
         float rotAngle = Vector2.SignedAngle(Vector2.right, vecToMouse);
 
         Bullet newStinger = GameObject.Instantiate(stinger, this.transform.position, Quaternion.identity);
-        newStinger.transform.rotation = Quaternion.Euler(0,0,rotAngle);
+        newStinger.SetRotation(rotAngle);
         newStinger.SetVelocity(_rb.velocity + vecToMouse * 5f);
-        newStinger.SetDespawnTime(0.2f);
-
     }
 
     public void TakeDamage(DamageDealer damageDealer) 

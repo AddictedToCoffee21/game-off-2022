@@ -10,20 +10,15 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     private float _timeToDespawn = 10f;
-
     private float _timeSinceAlive = 0f;
 
     private Rigidbody2D _rb2d;
-
-    // Start is called before the first frame update
-
 
     private void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         _timeSinceAlive += Time.deltaTime;
@@ -41,7 +36,6 @@ public class Bullet : MonoBehaviour
     }
 
     public void DestroyBullet() {
-        Debug.Log("Test");
         Destroy(this.gameObject);
     }
 

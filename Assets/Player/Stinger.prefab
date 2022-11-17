@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   destroyOnHit: 1
-  _timeToDespawn: 1
+  _timeToDespawn: 0.2
 --- !u!58 &5335399044692946028
 CircleCollider2D:
   m_ObjectHideFlags: 0
