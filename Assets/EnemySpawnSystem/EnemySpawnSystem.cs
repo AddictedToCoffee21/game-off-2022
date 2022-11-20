@@ -78,6 +78,8 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void Update()
     {
+        waveInformation.SetEnemyCount(_enemyWaveQueue[_currentWave].Count + this.GetComponentsInChildren<Transform>().Length - 1);
+
         Vector2 bottomLeft = playerCamera.ScreenToWorldPoint(new Vector3(0, 0, playerCamera.nearClipPlane));
         Vector2 topRight = playerCamera.ScreenToWorldPoint(new Vector3(playerCamera.pixelWidth, playerCamera.pixelHeight, playerCamera.nearClipPlane));
 
@@ -134,6 +136,7 @@ public class EnemySpawnSystem : MonoBehaviour
                     Instantiate(_enemyWaveQueue[_currentWave].Dequeue(), new Vector3(_rand1, _rand2, 1),
                         Quaternion.identity, transform).GetComponent<Enemy>().target = playerRigidbody2D;
 
+
                     _rand1 = 0;
                     _rand2 = 0;
                     _canSpawnEnemy = false;
@@ -144,7 +147,6 @@ public class EnemySpawnSystem : MonoBehaviour
 
             case GameState.AfterWave:
             {
-                Debug.Log("After wave");
                 
                 _currentTimeBetweenWaves += Time.deltaTime;
 
@@ -152,6 +154,7 @@ public class EnemySpawnSystem : MonoBehaviour
                 {
                     _currentTimeBetweenWaves = 0;
                     _currentWave++;
+                    waveInformation.SetWaveCount(_currentWave + 1);
                     _currentGameState = GameState.InWave;
                 }
                 
