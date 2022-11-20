@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 1
   enemyDamage: 1
-  enemySpeed: 5
+  enemySpeed: 3
   canShoot: 1
   timeAfterWarning: 0
   timeBetweenShots: 1.5

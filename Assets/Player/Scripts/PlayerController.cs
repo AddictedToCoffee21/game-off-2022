@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -205,6 +206,7 @@ public class PlayerController : MonoBehaviour
     public void KillPlayer() 
     {
         Debug.Log("Player Dead");
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator Invincibility() 

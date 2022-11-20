@@ -46,6 +46,8 @@ public class EnemySpawnSystem : MonoBehaviour
     private bool _canSpawnEnemy;
     private float _currentTimeBetweenWaves;
 
+    public WaveInformation waveInformation;
+
     private void Start()
     {
         Vector2 bottomLeft = playerCamera.ScreenToWorldPoint(new Vector3(0, 0, playerCamera.nearClipPlane));

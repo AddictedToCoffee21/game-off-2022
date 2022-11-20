@@ -47,8 +47,12 @@ public class Hedgehog : Enemy
 
     override protected void Move() 
     {
+        //Vector to Player
+        Vector2 vecToPlayer = target.position - base.rb2d.position;
+        vecToPlayer.y = 0;
+
         if(!_isWarning)
-            base.rb2d.velocity = new Vector2((int) moveDirection, 0) * enemySpeed * Time.fixedDeltaTime;
+            base.rb2d.velocity = vecToPlayer.normalized * enemySpeed * Time.fixedDeltaTime;
         else
             base.rb2d.velocity = Vector2.zero;
     }

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2178025782023476303}
   - component: {fileID: 2178025782023476299}
   - component: {fileID: 8798041128609541429}
+  - component: {fileID: -8266569124995741316}
+  - component: {fileID: -877722859098251058}
   m_Layer: 7
   m_Name: Hedgehog
   m_TagString: Untagged
@@ -60,7 +62,7 @@ MonoBehaviour:
     m_Bits: 256
   moveDirection: 1
   bullet: {fileID: 5029885463600679578, guid: 0cc6a423071e0ed4991743923e434d42, type: 3}
-  shotCount: 32
+  shotCount: 16
   dangerSprite: {fileID: 21300000, guid: bce0dbb228c71de41badab58804a0168, type: 3}
 --- !u!212 &2178025782023476298
 SpriteRenderer:
@@ -171,3 +173,49 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.2}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!114 &-8266569124995741316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178025782023476292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2451e97be0359344d85568e09e51ed4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  damage: 1
+--- !u!114 &-877722859098251058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178025782023476292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497bf0c00a5404441a65418bf935e5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  callback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2178025782023476296}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

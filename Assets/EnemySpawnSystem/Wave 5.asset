@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c3138dfb967be47b6a6b378a4142b7, type: 3}
   m_Name: Wave 5
   m_EditorClassIdentifier: 
-  enemies: []
+  enemies:
+  - {fileID: 2178025782023476292, guid: 8501d7fc307cb3441ad6a170e75a48cb, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 4854887936165241422, guid: a04a379005b721a478c7dc1d4204f48a, type: 3}
+  - {fileID: 1478142795517977689, guid: aafaf9c722030964f93558678d860776, type: 3}
+  - {fileID: 1478142795517977689, guid: aafaf9c722030964f93558678d860776, type: 3}
+  - {fileID: 1478142795517977689, guid: aafaf9c722030964f93558678d860776, type: 3}
+  - {fileID: 2178025782023476292, guid: 8501d7fc307cb3441ad6a170e75a48cb, type: 3}
+  - {fileID: 2178025782023476292, guid: 8501d7fc307cb3441ad6a170e75a48cb, type: 3}
