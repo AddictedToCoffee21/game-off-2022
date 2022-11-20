@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     public int playerDamage = 1;
     public float invincibleTime = 1f;
     public Color blinkColor = Color.clear;
-    public float attackCooldown = 0f;
+    public float attackCooldown = 1f;
     private bool isAttackReady = true;
 
     [Space(10)]
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     [Space(10)]
     public Healthbar healthbar;
+    public Attackbar attackbar;
     public Bullet stinger;
     public float stingerSpeed = 5; 
     
@@ -170,14 +171,15 @@ public class PlayerController : MonoBehaviour
 
         Bullet newStinger = GameObject.Instantiate(stinger, this.transform.position + (Vector3) vecToMouse * 0.5f, Quaternion.identity);
         newStinger.SetRotation(rotAngle);
-        //newStinger.player = this;
         newStinger.SetVelocity(vecToMouse * stingerSpeed);
     }
 
-    private IEnumerator StartAttackCooldown() {
+    public IEnumerator StartAttackCooldown() {
         isAttackReady = false;
+        attackbar.UpdateAttackDisplay(isAttackReady);
         yield return new WaitForSecondsRealtime(attackCooldown);
         isAttackReady = true;
+        attackbar.UpdateAttackDisplay(isAttackReady);
     }
 
     public void TakeDamage(DamageDealer damageDealer) 
