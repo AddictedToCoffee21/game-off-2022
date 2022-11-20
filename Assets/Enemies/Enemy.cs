@@ -79,7 +79,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected void Die()
+    public void Die()
     {
         Destroy(this.gameObject);
     }
