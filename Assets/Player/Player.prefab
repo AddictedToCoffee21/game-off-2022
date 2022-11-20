@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &382586509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382586510}
+  - component: {fileID: 382586511}
+  m_Layer: 6
+  m_Name: CollisionHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &382586510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382586509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8169444932762844786}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &382586511
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382586509}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &8169444931369840940
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: -1485613115
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1727195138, guid: d08bb429b4d950543b79294e371dc0ea, type: 3}
+  m_Sprite: {fileID: -490101552, guid: b8f30948dd2cd124db861688b7281827, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5172,6 +5220,7 @@ Transform:
   - {fileID: 8169444932091253335}
   - {fileID: 8169444931855357607}
   - {fileID: 8169444931369840939}
+  - {fileID: 382586510}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5218,8 +5267,8 @@ MonoBehaviour:
   animatorControllerBee: {fileID: 9100000, guid: 8f8fef9421340f9409a67f7432cd119a, type: 2}
   _horizontalMovement: 0
   _verticalMovement: 0
-  playerHealth: 10
-  playerMaxHealth: 10
+  playerHealth: 3
+  playerMaxHealth: 3
   playerDamage: 1
   invincibleTime: 1
   blinkColor: {r: 1, g: 0, b: 0, a: 0.5019608}
@@ -5230,4 +5279,4 @@ MonoBehaviour:
   _hitboxCollider: {fileID: 8169444931369840938}
   _attackCollider: {fileID: 0}
   healthbar: {fileID: 0}
-  stinger: {fileID: 0}
+  stinger: {fileID: 4797112343614158995, guid: de33e64e1995e604f896bb49830f4d65, type: 3}
