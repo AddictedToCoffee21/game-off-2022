@@ -5232,7 +5232,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8169444932762844789}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -5244,7 +5244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8169444932762844788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5261,7 +5261,7 @@ MonoBehaviour:
   playerDirection: 0
   butterflySpeed: 4
   butterflyAcceleration: 0.5
-  beeSpeed: 2
+  beeSpeed: 1.7
   beeAcceleration: 1
   animatorControllerButterfly: {fileID: 9100000, guid: 5356616e067aab24784687f6ebb2a49c, type: 2}
   animatorControllerBee: {fileID: 9100000, guid: 8f8fef9421340f9409a67f7432cd119a, type: 2}
@@ -5272,11 +5272,12 @@ MonoBehaviour:
   playerDamage: 1
   invincibleTime: 1
   blinkColor: {r: 1, g: 0, b: 0, a: 0.5019608}
-  attackTime: 0.5
+  attackCooldown: 1
   hitLayers:
     serializedVersion: 2
     m_Bits: 128
   _hitboxCollider: {fileID: 8169444931369840938}
   _attackCollider: {fileID: 0}
   healthbar: {fileID: 0}
-  stinger: {fileID: 4797112343614158995, guid: de33e64e1995e604f896bb49830f4d65, type: 3}
+  stinger: {fileID: 4797112343614158995, guid: c25e336dd2b7c834cb8e7614c1a865c6, type: 3}
+  stingerSpeed: 10

@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D _rb2d;
 
+    public PlayerController player = null;
+
     private void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
@@ -21,6 +23,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
+        //TODO: Fade out for Playerbullet
         _timeSinceAlive += Time.deltaTime;
         if(_timeSinceAlive >= _timeToDespawn) {
            DestroyBullet();

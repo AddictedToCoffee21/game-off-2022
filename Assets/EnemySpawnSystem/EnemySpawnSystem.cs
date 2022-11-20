@@ -15,7 +15,6 @@ public class EnemySpawnSystem : MonoBehaviour
 
     public Camera playerCamera;
     public Rigidbody2D playerRigidbody2D;
-    public GameObject fly;
 
     [Space(10)] public List<EnemyWave> enemyWaves;
     public int maxEnemyCount;

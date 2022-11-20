@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected int enemyDamage = 1;
 
-    [SerializeField, Range(0,100)]
+    [SerializeField, Range(0,200)]
     protected float enemySpeed = 1;
 
     [SerializeField] 

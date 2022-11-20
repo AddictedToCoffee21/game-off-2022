@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
     public int playerDamage = 1;
     public float invincibleTime = 1f;
     public Color blinkColor = Color.clear;
-    public float attackTime = 1f;
+    public float attackCooldown = 0f;
+    private bool isAttackReady = true;
 
     [Space(10)]
     [Tooltip("The layers from which the player will take Damage")]
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     public Healthbar healthbar;
     public Bullet stinger;
+    public float stingerSpeed = 5; 
     
     private void Start()
     {
@@ -106,8 +108,9 @@ public class PlayerController : MonoBehaviour
             _animator.runtimeAnimatorController = animatorControllerBee;
         }
 
-        if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2"))
+        if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2") && isAttackReady)
         {
+            StartCoroutine("StartAttackCooldown");
             StartAttack();
         }
     }
@@ -165,9 +168,16 @@ public class PlayerController : MonoBehaviour
 
         float rotAngle = Vector2.SignedAngle(Vector2.right, vecToMouse);
 
-        Bullet newStinger = GameObject.Instantiate(stinger, this.transform.position, Quaternion.identity);
+        Bullet newStinger = GameObject.Instantiate(stinger, this.transform.position + (Vector3) vecToMouse * 0.5f, Quaternion.identity);
         newStinger.SetRotation(rotAngle);
-        newStinger.SetVelocity(_rb.velocity + vecToMouse * 5f);
+        //newStinger.player = this;
+        newStinger.SetVelocity(vecToMouse * stingerSpeed);
+    }
+
+    private IEnumerator StartAttackCooldown() {
+        isAttackReady = false;
+        yield return new WaitForSecondsRealtime(attackCooldown);
+        isAttackReady = true;
     }
 
     public void TakeDamage(DamageDealer damageDealer) 
