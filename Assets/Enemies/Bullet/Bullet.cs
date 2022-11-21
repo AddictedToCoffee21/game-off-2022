@@ -9,12 +9,10 @@ public class Bullet : MonoBehaviour
     public bool destroyOnHit = true;
 
     [SerializeField]
-    private float _timeToDespawn = 10f;
-    private float _timeSinceAlive = 0f;
+    protected float _timeToDespawn = 10f;
+    protected float _timeSinceAlive = 0f;
 
     private Rigidbody2D _rb2d;
-
-    public PlayerController player = null;
 
     private void Awake()
     {
@@ -23,7 +21,6 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        //TODO: Fade out for Playerbullet
         _timeSinceAlive += Time.deltaTime;
         if(_timeSinceAlive >= _timeToDespawn) {
            DestroyBullet();
@@ -38,7 +35,7 @@ public class Bullet : MonoBehaviour
         _rb2d.velocity = velocity;
     }
 
-    public void DestroyBullet() {
+    public virtual void DestroyBullet() {
         Destroy(this.gameObject);
     }
 
