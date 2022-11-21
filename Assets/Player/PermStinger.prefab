@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4797112343614158997}
   - component: {fileID: 4797112343614158998}
   - component: {fileID: 6601459085258764210}
-  - component: {fileID: 165777936231183391}
   - component: {fileID: -6951976730329353241}
+  - component: {fileID: 4719147556914611017}
   m_Layer: 8
   m_Name: PermStinger
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4797112343614158999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -125,7 +125,24 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   damage: 1
---- !u!60 &165777936231183391
+--- !u!114 &-6951976730329353241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4797112343614158999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23d9c238cc5e8545ba6ef691f035273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  destroyOnHit: 1
+  _timeToDespawn: 0.25
+  fadeOutTime: 0.1
+  fadeOutStepSize: 0.1
+--- !u!60 &4719147556914611017
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,26 +167,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.125, y: 0.125}
-      - {x: -0.125, y: -0.125}
-      - {x: -0.078125, y: -0.125}
-      - {x: 0.125, y: -0.0234375}
-      - {x: 0.125, y: 0.03125}
-      - {x: -0.0546875, y: 0.125}
---- !u!114 &-6951976730329353241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4797112343614158999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f23d9c238cc5e8545ba6ef691f035273, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  destroyOnHit: 1
-  _timeToDespawn: 0.25
-  fadeOutTime: 0.1
-  fadeOutStepSize: 0.1
+    - - {x: -0.13925143, y: 0.33499295}
+      - {x: -0.25, y: 0.34821406}
+      - {x: -0.25188878, y: -0.3387704}
+      - {x: -0.13358521, y: -0.33499295}
+      - {x: 0.24381867, y: -0.14045316}
+      - {x: 0.42942953, y: -0.06627746}
+      - {x: 0.42925966, y: 0.054344155}
