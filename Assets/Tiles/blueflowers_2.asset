@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Wand
+  m_Name: blueflowers_2
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 7b07ebb6841ce26479959ecb2de5063f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5aebbe217e5ba3f409ddab4a28693662, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
