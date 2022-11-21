@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     protected float _timeToDespawn = 10f;
     protected float _timeSinceAlive = 0f;
 
-    private Rigidbody2D _rb2d;
+    protected Rigidbody2D _rb2d;
 
     private void Awake()
     {

@@ -9,10 +9,13 @@ public class Stinger : Bullet
     public float fadeOutStepSize = 0.2f;
 
     private Vector3 _scale;
+    private Vector2 _startVelocity;
 
     public override void DestroyBullet() 
     {
         _scale = this.transform.localScale;
+        _startVelocity = base._rb2d.velocity;
+
         StartCoroutine("FadeOutBullet");
     }
 
@@ -24,6 +27,7 @@ public class Stinger : Bullet
         while(step <= stepCount) 
         {
             this.transform.localScale = _scale * (1 - fadeOutStepSize);
+            _rb2d.velocity = _startVelocity * (1 - fadeOutStepSize) * 0.5f;
             yield return new WaitForSecondsRealtime(fadeOutTime / stepCount);
             step++;
         }

@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb693c2dd946e74a9be30e830b7ab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 1191883702}
   playerRigidbody2D: {fileID: 1065584594}
   enemyWaves:
   - {fileID: 11400000, guid: ca9f9d023aee52b4d9d77585a368f8f0, type: 2}
@@ -3389,6 +3389,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!20 &1191883702 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1632348457879873626, guid: 3b24d279ec634d94e81d9c4ea568d7a7, type: 3}
+  m_PrefabInstance: {fileID: 1632348458903706604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1221812722 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2396459192602457942, guid: 89cc8b93b358c734abc7131b04a0499e, type: 3}
