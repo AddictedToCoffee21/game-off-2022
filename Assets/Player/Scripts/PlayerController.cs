@@ -176,11 +176,22 @@ public class PlayerController : MonoBehaviour
     }
 
     public IEnumerator StartAttackCooldown() {
+
         isAttackReady = false;
-        attackbar.UpdateAttackDisplay(isAttackReady);
-        yield return new WaitForSecondsRealtime(attackCooldown);
+        float cooldownStep = attackCooldown / 8.0f;
+        float currentCooldown = 0f;
+
+        //attackbar.UpdateAttackDisplay(attackCooldown, 1 - currentCooldown);
+
+        while(currentCooldown < attackCooldown) 
+        {
+            yield return new WaitForSecondsRealtime(cooldownStep);
+            currentCooldown += cooldownStep;
+            attackbar.UpdateAttackDisplay(attackCooldown, attackCooldown - currentCooldown);
+        }
+
         isAttackReady = true;
-        attackbar.UpdateAttackDisplay(isAttackReady);
+
     }
 
     public void TakeDamage(DamageDealer damageDealer) 

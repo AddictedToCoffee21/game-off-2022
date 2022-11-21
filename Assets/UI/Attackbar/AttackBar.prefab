@@ -59,6 +59,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114d49b37cf29c84dba377815757db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationSprites:
+  - {fileID: 999070831, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: -505506898, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: -667462928, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: 1395717509, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: -1638366123, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: -1749701786, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: 6885256, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: 1992154248, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: 679852972, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
+  - {fileID: -1334720988, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
 --- !u!114 &2396459192602457943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +90,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3ddb87550e64f9148996d818855f05b8, type: 3}
+  m_Sprite: {fileID: 999070831, guid: aa304ea661c89734fb3d98063a5fac9c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
