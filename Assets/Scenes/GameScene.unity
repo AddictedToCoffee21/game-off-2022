@@ -233,6 +233,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 382586509, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8169444932762844786, guid: 73b1075fffb3bfc44b64cdef5473340f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -564,11 +568,11 @@ MonoBehaviour:
   playerCamera: {fileID: 1191883702}
   playerRigidbody2D: {fileID: 1065584594}
   enemyWaves:
-  - {fileID: 11400000, guid: ca9f9d023aee52b4d9d77585a368f8f0, type: 2}
   - {fileID: 11400000, guid: 5c67aeb2be6ac4d4a809cad215bc9832, type: 2}
   - {fileID: 11400000, guid: 5a4c87617301a184fbb3edb7308334a3, type: 2}
   - {fileID: 11400000, guid: daae7d497c204d34596c94b487d5f337, type: 2}
   - {fileID: 11400000, guid: 63948cec12a6b0544a29d22f90dff415, type: 2}
+  - {fileID: 11400000, guid: ca9f9d023aee52b4d9d77585a368f8f0, type: 2}
   maxEnemyCount: 5
   timeBetweenEnemySpawn: 1
   timeBetweenWaves: 5
@@ -603,7 +607,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wave 0
+  m_text: 'Wave 1
 
     Enemies left 0'
   m_isRightToLeft: 0
@@ -101960,6 +101964,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1632348457879873624, guid: 3b24d279ec634d94e81d9c4ea568d7a7, type: 3}
+      propertyPath: m_RefResolutionX
+      value: 426
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632348457879873624, guid: 3b24d279ec634d94e81d9c4ea568d7a7, type: 3}
+      propertyPath: m_RefResolutionY
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632348457879873626, guid: 3b24d279ec634d94e81d9c4ea568d7a7, type: 3}
+      propertyPath: orthographic size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1632348457879873627, guid: 3b24d279ec634d94e81d9c4ea568d7a7, type: 3}
       propertyPath: m_RootOrder
       value: 5

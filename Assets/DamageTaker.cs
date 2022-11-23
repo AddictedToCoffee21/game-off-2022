@@ -29,4 +29,19 @@ public class DamageTaker : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+
+        if((hitLayers.value & (1 << other.collider.gameObject.layer)) > 0)
+        {
+            DamageDealer damageDealer = other.collider.gameObject.GetComponent<DamageDealer>();
+ 
+            if(damageDealer != null)
+            {
+                        Debug.Log("HHAHAHA");
+                damageDealer.OnHit.Invoke();
+                callback.Invoke(damageDealer);
+            }
+        }
+    }
 }

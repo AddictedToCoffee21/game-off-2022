@@ -34,6 +34,8 @@ public abstract class Enemy : MonoBehaviour
 
     public LayerMask hitLayers;
 
+    public bool hasDeathAnimation = false;
+
     protected void Start()
     {
         this.rb2d = GetComponent<Rigidbody2D>();
@@ -81,7 +83,12 @@ public abstract class Enemy : MonoBehaviour
 
     public void Die()
     {
-        Destroy(this.gameObject);
+        
+        //Animations are added
+        if(hasDeathAnimation)
+            this.GetComponent<Animator>().SetTrigger("Death");
+        else
+            Destroy(this.gameObject);
     }
 
     IEnumerator WaitForShot() 
