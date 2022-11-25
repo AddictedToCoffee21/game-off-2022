@@ -244,6 +244,8 @@ public class PlayerController : MonoBehaviour
     public void KillPlayer() 
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(isDead)
+            return;
         isDead = true;
         backgroundMusic.PlayDeathMusic();
         halo.active = true;
