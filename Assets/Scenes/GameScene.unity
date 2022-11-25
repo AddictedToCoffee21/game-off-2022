@@ -605,11 +605,11 @@ MonoBehaviour:
   playerCamera: {fileID: 1191883702}
   playerRigidbody2D: {fileID: 1065584594}
   enemyWaves:
-  - {fileID: 11400000, guid: ca9f9d023aee52b4d9d77585a368f8f0, type: 2}
-  - {fileID: 11400000, guid: 63948cec12a6b0544a29d22f90dff415, type: 2}
   - {fileID: 11400000, guid: 5c67aeb2be6ac4d4a809cad215bc9832, type: 2}
   - {fileID: 11400000, guid: 5a4c87617301a184fbb3edb7308334a3, type: 2}
+  - {fileID: 11400000, guid: ca9f9d023aee52b4d9d77585a368f8f0, type: 2}
   - {fileID: 11400000, guid: daae7d497c204d34596c94b487d5f337, type: 2}
+  - {fileID: 11400000, guid: 63948cec12a6b0544a29d22f90dff415, type: 2}
   timeBetweenWaves: 5
   waveInformation: {fileID: 954537763}
 --- !u!114 &954537763 stripped
