@@ -17,12 +17,14 @@ public class EnemySpawnSystem : MonoBehaviour
     public Rigidbody2D playerRigidbody2D;
 
     [Space(10)] public List<EnemyWave> enemyWaves;
-    public int maxEnemyCount;
-    public int timeBetweenEnemySpawn = 1;
+    private int _maxEnemyCount;
+    private float _timeBetweenEnemySpawn = 1;
     public int timeBetweenWaves = 5;
 
 
     private List<Queue<GameObject>> _enemyWaveQueue;
+    private List<int> _enemyWaveMaxEnemyCount;
+    private List<float> _enemyWaveTimeBetweenSpawns;
 
     private float _rand1;
     private float _rand2;
@@ -64,6 +66,8 @@ public class EnemySpawnSystem : MonoBehaviour
         _yOuterBorderUp = _yInnerBorderUp + 3;
 
         _enemyWaveQueue = new List<Queue<GameObject>>();
+        _enemyWaveMaxEnemyCount = new List<int>();
+        _enemyWaveTimeBetweenSpawns = new List<float>();
         _currentWave = 0;
         _currentTime = 0;
         _canSpawnEnemy = false;
@@ -73,12 +77,15 @@ public class EnemySpawnSystem : MonoBehaviour
         for (int i = 0; i < enemyWaves.Count; i++)
         {
             _enemyWaveQueue.Add(new Queue<GameObject>(enemyWaves[i].enemies));
+            _enemyWaveMaxEnemyCount.Add(enemyWaves[i].maxEnemyCount);
+            _enemyWaveTimeBetweenSpawns.Add(enemyWaves[i].timeBetweenEnemySpawn);
         }
     }
 
     private void Update()
     {
         waveInformation.SetEnemyCount(_enemyWaveQueue[_currentWave].Count + this.GetComponentsInChildren<Transform>().Length - 1);
+        waveInformation.SetWaveCount(_currentWave + 1);
 
         Vector2 bottomLeft = playerCamera.ScreenToWorldPoint(new Vector3(0, 0, playerCamera.nearClipPlane));
         Vector2 topRight = playerCamera.ScreenToWorldPoint(new Vector3(playerCamera.pixelWidth, playerCamera.pixelHeight, playerCamera.nearClipPlane));
@@ -92,11 +99,15 @@ public class EnemySpawnSystem : MonoBehaviour
         _xOuterBorderRight = _xInnerBorderRight + 3;
         _yOuterBorderDown = _yInnerBorderDown - 3;
         _yOuterBorderUp = _yInnerBorderUp + 3;
-        
-        if (transform.childCount < maxEnemyCount)
+
+        //Get vars from Wave
+        _maxEnemyCount = _enemyWaveMaxEnemyCount[_currentWave];
+        _timeBetweenEnemySpawn = _enemyWaveTimeBetweenSpawns[_currentWave];
+
+        if (transform.childCount < _maxEnemyCount)
             _currentTime += Time.deltaTime;
 
-        if (_currentTime >= timeBetweenEnemySpawn)
+        if (_currentTime >= _timeBetweenEnemySpawn)
         {
             _currentTime = 0;
             _canSpawnEnemy = true;
@@ -111,7 +122,7 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             case GameState.InWave:
             {
-                if (_canSpawnEnemy && transform.childCount < maxEnemyCount && _enemyWaveQueue[_currentWave].Count != 0)
+                if (_canSpawnEnemy && transform.childCount < _maxEnemyCount && _enemyWaveQueue[_currentWave].Count != 0)
                 {
                     //randSide to switch between up/down when it is above/below and x is in Inner boundary threshold 0.5
                     _randSide = Random.Range(0.0f,1.0f);
@@ -154,7 +165,6 @@ public class EnemySpawnSystem : MonoBehaviour
                 {
                     _currentTimeBetweenWaves = 0;
                     _currentWave++;
-                    waveInformation.SetWaveCount(_currentWave + 1);
                     _currentGameState = GameState.InWave;
                 }
                 

@@ -7,6 +7,9 @@ using UnityEngine;
 public class EnemyWave : ScriptableObject
 {
     public List<GameObject> enemies;
+
+    public int maxEnemyCount = 5;
+    public float timeBetweenEnemySpawn = 1.0f;
     
     // Start is called before the first frame update
     void Start()
