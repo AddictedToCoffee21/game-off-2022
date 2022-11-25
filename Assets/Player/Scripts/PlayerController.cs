@@ -6,14 +6,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+public enum PlayerState
+{
+    Butterfly = 0,
+    Bee = 1
+}
 
 public class PlayerController : MonoBehaviour
 {
-    public enum PlayerState
-    {
-        Butterfly = 0,
-        Bee = 1
-    }
 
     public enum Direction
     {
@@ -69,6 +69,12 @@ public class PlayerController : MonoBehaviour
     public Attackbar attackbar;
     public Bullet stinger;
     public float stingerSpeed = 5; 
+
+    [Space(10)]
+    private bool isDead = false;
+    public BackgroundMusic backgroundMusic;
+    public GameObject halo;
+    public float ascendSpeed = 100;
     
     private void Start()
     {
@@ -81,39 +87,47 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {
-        _horizontalMovement = Input.GetAxisRaw("Horizontal");
-        _verticalMovement = Input.GetAxisRaw("Vertical");
+    {   
+        if(isDead) 
+        {
+            //No Movement Input allowed
+        }
+        else 
+        {
+            _horizontalMovement = Input.GetAxisRaw("Horizontal");
+            _verticalMovement = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
-        {
-            playerState = (PlayerState)(((int) playerState + 1) % 2);
-            _particleSystem.Play();
-        }
+            if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
+            {
+                playerState = (PlayerState)(((int) playerState + 1) % 2);
+                _particleSystem.Play();
+                backgroundMusic.FadeToState(playerState);
+            }
 
-        if (playerDirection == Direction.Right)
-        {
-            _sr.flipX = true;
-        }
-        else
-        {
-            _sr.flipX = false;
-        }
+            if (playerDirection == Direction.Right)
+            {
+                _sr.flipX = true;
+            }
+            else
+            {
+                _sr.flipX = false;
+            }
 
-        if (playerState == PlayerState.Butterfly && _animator.runtimeAnimatorController != animatorControllerButterfly)
-        {
-            _animator.runtimeAnimatorController = animatorControllerButterfly;
-        }
+            if (playerState == PlayerState.Butterfly && _animator.runtimeAnimatorController != animatorControllerButterfly)
+            {
+                _animator.runtimeAnimatorController = animatorControllerButterfly;
+            }
         
-        if (playerState == PlayerState.Bee && _animator.runtimeAnimatorController != animatorControllerBee)
-        {
-            _animator.runtimeAnimatorController = animatorControllerBee;
-        }
+            if (playerState == PlayerState.Bee && _animator.runtimeAnimatorController != animatorControllerBee)
+            {
+                _animator.runtimeAnimatorController = animatorControllerBee;
+            }
 
-        if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2") && isAttackReady)
-        {
-            StartCoroutine("StartAttackCooldown");
-            StartAttack();
+            if (playerState == PlayerState.Bee && Input.GetButtonDown("Fire2") && isAttackReady)
+            {
+                StartCoroutine("StartAttackCooldown");
+                StartAttack();
+            }
         }
     }
 
@@ -158,7 +172,16 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed * Time.fixedDeltaTime * 100;
+        
+
+        if(isDead) 
+        {
+            _rb.velocity = Vector2.up * ascendSpeed * Time.fixedDeltaTime;
+        }
+        else 
+        {
+            _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed * Time.fixedDeltaTime * 100;
+        }
     }
 
     public void StartAttack() {
@@ -201,11 +224,15 @@ public class PlayerController : MonoBehaviour
         
         healthbar.UpdateHealthDisplay(playerHealth, playerMaxHealth);
 
-        StartCoroutine("Invincibility");
+
 
         if(playerHealth <= 0)
         {
             KillPlayer();
+        } 
+        else 
+        {
+            StartCoroutine("Invincibility");
         }
 
     }
@@ -216,8 +243,11 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer() 
     {
-        Debug.Log("Player Dead");
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        isDead = true;
+        backgroundMusic.PlayDeathMusic();
+        halo.active = true;
+        _sr.color = new Color(1,1,1, 0.5f);
     }
 
     private IEnumerator Invincibility() 
