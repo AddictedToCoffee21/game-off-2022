@@ -60,9 +60,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
     private Animator _animator;
+    private AudioSource _audio;
     private ParticleSystem _particleSystem;
     [SerializeField] private Collider2D _hitboxCollider;
     [SerializeField] private Collider2D _attackCollider;
+    [SerializeField] private Collider2D _collisionCollider;
 
     [Space(10)]
     public Healthbar healthbar;
@@ -75,6 +77,10 @@ public class PlayerController : MonoBehaviour
     public BackgroundMusic backgroundMusic;
     public GameObject halo;
     public float ascendSpeed = 100;
+
+    [Space(10)]
+    public AudioClip AttackReady;
+    public AudioClip Hurt;
     
     private void Start()
     {
@@ -82,6 +88,7 @@ public class PlayerController : MonoBehaviour
         _sr = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _particleSystem = GetComponentInChildren<ParticleSystem>();
+        _audio = GetComponent<AudioSource>();
 
         healthbar.UpdateHealthDisplay(playerHealth, playerMaxHealth);
     }
@@ -172,8 +179,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        
-
         if(isDead) 
         {
             _rb.velocity = Vector2.up * ascendSpeed * Time.fixedDeltaTime;
@@ -214,6 +219,8 @@ public class PlayerController : MonoBehaviour
         }
 
         isAttackReady = true;
+        _audio.clip = AttackReady;
+        _audio.Play();
 
     }
 
@@ -223,7 +230,7 @@ public class PlayerController : MonoBehaviour
         playerHealth -= damageDealer.GetDamage();
         
         healthbar.UpdateHealthDisplay(playerHealth, playerMaxHealth);
-
+        
 
 
         if(playerHealth <= 0)
@@ -232,6 +239,8 @@ public class PlayerController : MonoBehaviour
         } 
         else 
         {
+            _audio.clip = Hurt;
+            _audio.Play();
             StartCoroutine("Invincibility");
         }
 
@@ -250,6 +259,7 @@ public class PlayerController : MonoBehaviour
         backgroundMusic.PlayDeathMusic();
         halo.active = true;
         _sr.color = new Color(1,1,1, 0.5f);
+        _collisionCollider.enabled = false;
     }
 
     private IEnumerator Invincibility() 
@@ -267,5 +277,10 @@ public class PlayerController : MonoBehaviour
         }
         _hitboxCollider.enabled = true;
     }
+
+    public bool IsPlayerDead() {
+        return isDead;
+    }
+
 
 }

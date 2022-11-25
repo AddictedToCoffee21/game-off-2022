@@ -14,9 +14,12 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 desiredPosition = (Vector3) target.position + _offset;
-        Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref _velocity, _smoothTime, float.PositiveInfinity, Time.deltaTime);
-        this.transform.position = smoothedPosition;
+        if(!target.gameObject.GetComponent<PlayerController>().IsPlayerDead()) {
+            Vector3 desiredPosition = (Vector3) target.position + _offset;
+            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref _velocity, _smoothTime, float.PositiveInfinity, Time.deltaTime);
+            this.transform.position = smoothedPosition;
+        }
+
     }
 
 }
