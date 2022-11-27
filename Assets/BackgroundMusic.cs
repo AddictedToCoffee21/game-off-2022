@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
-    public AudioClip BeeMusic;
-    public AudioClip ButterflyMusic;
+    public AudioClip music;
     public AudioClip DeathMusic;
+
+    public GameObject Heartbeat;
 
     private float timeGone;
 
@@ -16,31 +17,29 @@ public class BackgroundMusic : MonoBehaviour
     void Start()
     {
         _source = GetComponent<AudioSource>();
-        _source.clip = ButterflyMusic;
+        _source.clip = music;
         _source.Play();
     }
 
-    public void FadeToState(PlayerState state) 
+    public void PlayBackground() 
     {
-        if(state == PlayerState.Butterfly) 
-        {
-            timeGone = _source.time;
-            _source.clip = ButterflyMusic;
-            _source.time = timeGone;
-            _source.Play();
-        }
-        else if(state == PlayerState.Bee) 
-        {
-            timeGone = _source.time;
-            _source.clip = BeeMusic;
-            _source.time = timeGone;
-            _source.Play();
-        }
+        Heartbeat.SetActive(false);
+        _source.volume = 1f;
+        _source.clip = music;
+        _source.time = timeGone;
+        _source.Play();
+
     }
 
     public void PlayDeathMusic() 
     {
         _source.clip = DeathMusic;
         _source.Play();
+    }
+
+    public void PlayHeartbeat()
+    {
+        Heartbeat.SetActive(true);
+        _source.volume = 0.1f;
     }
 }

@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerState = (PlayerState)(((int) playerState + 1) % 2);
                 _particleSystem.Play();
-                backgroundMusic.FadeToState(playerState);
+                //backgroundMusic.FadeToState(playerState);
             }
 
             if (playerDirection == Direction.Right)
@@ -242,7 +242,12 @@ public class PlayerController : MonoBehaviour
             _audio.clip = Hurt;
             _audio.Play();
             StartCoroutine("Invincibility");
+
+            if(playerHealth == 1) {
+                backgroundMusic.PlayHeartbeat();
+            }
         }
+
 
     }
 
