@@ -49,6 +49,7 @@ public class EnemySpawnSystem : MonoBehaviour
     private float _currentTimeBetweenWaves;
 
     public WaveInformation waveInformation;
+    public Tutorial tutorial;
 
     private void Start()
     {
@@ -84,6 +85,10 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void Update()
     {
+        if(!tutorial.IsTutorialFinished()) {
+            return;
+        }
+
         waveInformation.SetEnemyCount(_enemyWaveQueue[_currentWave].Count + this.GetComponentsInChildren<Transform>().Length - 1);
         waveInformation.SetWaveCount(_currentWave + 1);
 
@@ -198,4 +203,5 @@ public class EnemySpawnSystem : MonoBehaviour
         //     Debug.DrawLine(topRight + offset1, topLeft - offset2);
         //     Debug.DrawLine(topRight + offset1, bottomRight + offset2);
     }
+
 }

@@ -33,6 +33,8 @@ public class BackgroundMusic : MonoBehaviour
 
     public void PlayDeathMusic() 
     {
+        Heartbeat.SetActive(false);
+        _source.volume = 1f;
         _source.clip = DeathMusic;
         _source.Play();
     }

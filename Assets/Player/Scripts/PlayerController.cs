@@ -81,6 +81,9 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     public AudioClip AttackReady;
     public AudioClip Hurt;
+
+    [Space(10)]
+    public Tutorial tutorial;
     
     private void Start()
     {
@@ -108,7 +111,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerState = (PlayerState)(((int) playerState + 1) % 2);
                 _particleSystem.Play();
-                //backgroundMusic.FadeToState(playerState);
+                tutorial.HideSwitchTutorial();
             }
 
             if (playerDirection == Direction.Right)
@@ -134,6 +137,7 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine("StartAttackCooldown");
                 StartAttack();
+                tutorial.HideShootTutorial();
             }
         }
     }
@@ -186,6 +190,10 @@ public class PlayerController : MonoBehaviour
         else 
         {
             _rb.velocity = new Vector2(_horizontalMovement, _verticalMovement).normalized * _currentPlayerSpeed * Time.fixedDeltaTime * 100;
+
+            if(_rb.velocity != Vector2.zero) {
+                tutorial.HideMovementTutorial();
+            }
         }
     }
 
@@ -257,7 +265,7 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer() 
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         if(isDead)
             return;
         isDead = true;

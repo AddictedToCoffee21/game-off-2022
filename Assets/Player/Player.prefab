@@ -5374,6 +5374,7 @@ MonoBehaviour:
   ascendSpeed: 100
   AttackReady: {fileID: 8300000, guid: 0de3b70047c07ef48a2fb9627386c0c0, type: 3}
   Hurt: {fileID: 8300000, guid: ecaaccf6f9068df42b868b61394d0a58, type: 3}
+  tutorial: {fileID: 0}
 --- !u!82 &1065584597
 AudioSource:
   m_ObjectHideFlags: 0
