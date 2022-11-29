@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
     [Space(10)]
     public Tutorial tutorial;
+    public GameMenu GameMenu;
     
     private void Start()
     {
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
-        if(isDead) 
+        if(isDead || GameMenu.PauseScreen.active) 
         {
             //No Movement Input allowed
         }
@@ -273,6 +274,12 @@ public class PlayerController : MonoBehaviour
         halo.active = true;
         _sr.color = new Color(1,1,1, 0.5f);
         _collisionCollider.enabled = false;
+        
+    }
+    
+    private IEnumerator WaitForDeathScreen(float seconds) {
+        yield return new WaitForSecondsRealtime(seconds);
+        GameMenu.ToggleDeathScreen();
     }
 
     private IEnumerator Invincibility() 
