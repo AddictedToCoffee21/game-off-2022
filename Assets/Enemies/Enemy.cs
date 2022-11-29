@@ -11,6 +11,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected SpriteRenderer spriteRenderer;
 
+    public GameObject particleSystem;
+
     [SerializeField]
     protected int enemyHealth = 1;
 
@@ -83,12 +85,12 @@ public abstract class Enemy : MonoBehaviour
 
     public void Die()
     {
-        
-        //Animations are added
-        if(hasDeathAnimation)
-            this.GetComponent<Animator>().SetTrigger("Death");
-        else
-            Destroy(this.gameObject);
+        if(particleSystem) {
+            GameObject obj = Instantiate(particleSystem, rb2d.position, Quaternion.identity);
+            obj.GetComponent<ParticleSystem>().Play();
+            Destroy(obj, 1f);
+        }
+        Destroy(this.gameObject);
     }
 
     IEnumerator WaitForShot() 

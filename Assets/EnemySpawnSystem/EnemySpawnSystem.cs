@@ -129,29 +129,15 @@ public class EnemySpawnSystem : MonoBehaviour
             {
                 if (_canSpawnEnemy && transform.childCount < _maxEnemyCount && _enemyWaveQueue[_currentWave].Count != 0)
                 {
-                    //randSide to switch between up/down when it is above/below and x is in Inner boundary threshold 0.5
-                    _randSide = Random.Range(0.0f,1.0f);
-                    // x Axis
-                    _rand1 = Random.Range(_xOuterBorderLeft, _xOuterBorderRight);
-                    // y Axis
-                    
-                    if(_rand1 >= _xInnerBorderLeft && _rand1 <= _xInnerBorderRight){
-                        _randSide = Random.Range(0.0f,1.0f);
-                        if(_randSide >= 0.5f){
-                            _rand2 = Random.Range(_yInnerBorderUp, _yInnerBorderUp);
-                        }
-                        else{
-                            _rand2 = Random.Range(_yOuterBorderDown, _yInnerBorderDown);
-                        }
-                    }
-                    else{
+                     while (_rand1 >= _xInnerBorderLeft && _rand1 <= _xInnerBorderRight &&
+                           _rand2 >= _yInnerBorderDown && _rand2 <= _yInnerBorderUp)
+                    {
+                        _rand1 = Random.Range(_xOuterBorderLeft, _xOuterBorderRight);
                         _rand2 = Random.Range(_yOuterBorderDown, _yOuterBorderUp);
                     }
 
-
                     Instantiate(_enemyWaveQueue[_currentWave].Dequeue(), new Vector3(_rand1, _rand2, 1),
                         Quaternion.identity, transform).GetComponent<Enemy>().target = playerRigidbody2D;
-
 
                     _rand1 = 0;
                     _rand2 = 0;

@@ -228,8 +228,8 @@ public class PlayerController : MonoBehaviour
         }
 
         isAttackReady = true;
-        _audio.clip = AttackReady;
-        _audio.Play();
+        //_audio.clip = AttackReady;
+        _audio.PlayOneShot(AttackReady, 3f);
 
     }
 
@@ -266,7 +266,6 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer() 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         if(isDead)
             return;
         isDead = true;
@@ -274,6 +273,7 @@ public class PlayerController : MonoBehaviour
         halo.active = true;
         _sr.color = new Color(1,1,1, 0.5f);
         _collisionCollider.enabled = false;
+        StartCoroutine("WaitForDeathScreen", 3f);
         
     }
     

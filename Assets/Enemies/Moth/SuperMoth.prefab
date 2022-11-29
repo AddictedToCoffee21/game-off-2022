@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435583092d733874cb5da687e9283019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 7412291336147029006, guid: 2ce7ed3f81928ec418364e02255a8cfb, type: 3}
   enemyHealth: 1
   enemyDamage: 1
   enemySpeed: 3
