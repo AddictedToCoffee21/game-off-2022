@@ -1444,7 +1444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &870208289
 Transform:
   m_ObjectHideFlags: 0
@@ -1475,7 +1475,6 @@ MonoBehaviour:
   playerCamera: {fileID: 1344326455}
   playerRigidbody2D: {fileID: 1065584594}
   enemyWaves:
-  - {fileID: 11400000, guid: 1b886782270f5a143a5dabdd267f4941, type: 2}
   - {fileID: 11400000, guid: 5c67aeb2be6ac4d4a809cad215bc9832, type: 2}
   - {fileID: 11400000, guid: 5a4c87617301a184fbb3edb7308334a3, type: 2}
   - {fileID: 11400000, guid: daae7d497c204d34596c94b487d5f337, type: 2}
@@ -1484,6 +1483,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4657cd1379d27004fa1a501c3a0661ce, type: 2}
   - {fileID: 11400000, guid: 11d4d6ebdb37a50479fdc9cd488af72c, type: 2}
   - {fileID: 11400000, guid: c88698ea5ea06754ea9bce53d3a6ade6, type: 2}
+  - {fileID: 11400000, guid: 1b886782270f5a143a5dabdd267f4941, type: 2}
   timeBetweenWaves: 5
   waveInformation: {fileID: 130972577265546944}
   tutorial: {fileID: 897915711}
