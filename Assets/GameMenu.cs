@@ -9,6 +9,7 @@ public class GameMenu : MonoBehaviour
     public GameObject DeathScreen;
     public GameObject PauseScreen;
     public GameObject OptionScreen;
+    public EnemySpawnSystem spawnSystem;
 
     // Update is called once per frame
     void Update()
@@ -36,6 +37,13 @@ public class GameMenu : MonoBehaviour
 
     public void ReloadScene() {
         Time.timeScale = 1f;
+        EnemySpawnSystem.startWave = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ReviveAtWave() {
+        Time.timeScale = 1f;
+        EnemySpawnSystem.startWave = spawnSystem.getCurrentWave();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

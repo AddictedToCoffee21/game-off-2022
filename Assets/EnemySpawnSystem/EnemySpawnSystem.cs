@@ -51,6 +51,10 @@ public class EnemySpawnSystem : MonoBehaviour
     public WaveInformation waveInformation;
     public Tutorial tutorial;
 
+    public GameObject WinScreen;
+
+    public static int startWave = 0;
+
     private void Start()
     {
         Vector2 bottomLeft = playerCamera.ScreenToWorldPoint(new Vector3(0, 0, playerCamera.nearClipPlane));
@@ -69,7 +73,7 @@ public class EnemySpawnSystem : MonoBehaviour
         _enemyWaveQueue = new List<Queue<GameObject>>();
         _enemyWaveMaxEnemyCount = new List<int>();
         _enemyWaveTimeBetweenSpawns = new List<float>();
-        _currentWave = 0;
+        _currentWave = startWave;
         _currentTime = 0;
         _canSpawnEnemy = false;
 
@@ -150,7 +154,11 @@ public class EnemySpawnSystem : MonoBehaviour
 
             case GameState.AfterWave:
             {
-                
+                //Game is won
+                if(_currentWave + 1 == 10) {
+                    WinScreen.active = true;
+                }
+
                 _currentTimeBetweenWaves += Time.deltaTime;
 
                 if (_currentTimeBetweenWaves >= timeBetweenWaves)
@@ -191,4 +199,7 @@ public class EnemySpawnSystem : MonoBehaviour
         //     Debug.DrawLine(topRight + offset1, bottomRight + offset2);
     }
 
+    public int getCurrentWave() {
+        return _currentWave;
+    }
 }
