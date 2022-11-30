@@ -20,6 +20,8 @@ public class Hedgehog : Enemy
 
     public int shotCount = 8;
 
+    public int rangeToPlayer = 10;
+
     private bool _isWarning = false;
     
     private Animator _animator;
@@ -49,12 +51,24 @@ public class Hedgehog : Enemy
     {
         //Vector to Player
         Vector2 vecToPlayer = target.position - base.rb2d.position;
-        vecToPlayer.y = 0;
+        
 
         if(!_isWarning)
-            base.rb2d.velocity = vecToPlayer.normalized * enemySpeed * Time.fixedDeltaTime;
+        {
+            if(vecToPlayer.magnitude > rangeToPlayer) 
+            {
+                base.rb2d.velocity = vecToPlayer.normalized * enemySpeed * Time.fixedDeltaTime;
+            }
+            else 
+            {
+                vecToPlayer.y = 0;
+                base.rb2d.velocity = vecToPlayer.normalized * enemySpeed * Time.fixedDeltaTime;
+            }
+        }
         else
+        {
             base.rb2d.velocity = Vector2.zero;
+        }
     }
 
     override protected void Shoot() 

@@ -21,7 +21,7 @@ public class Fly : Enemy
     [Tooltip("The sprite to be shown shortly before attack")]
     public Sprite dangerSprite;
 
-    new void Start() 
+    new void Start()
     {
         base.Start();
         _startPosition = base.rb2d.position;

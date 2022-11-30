@@ -282,7 +282,7 @@ public class PlayerController : MonoBehaviour
         GameMenu.ToggleDeathScreen();
     }
 
-    private IEnumerator Invincibility() 
+    private IEnumerator Invincibility()
     {
         _hitboxCollider.enabled = false;
         float blinkTime = 0.1f;
