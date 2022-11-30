@@ -89,8 +89,9 @@ public class EnemySpawnSystem : MonoBehaviour
             return;
         }
 
-        waveInformation.SetEnemyCount(_enemyWaveQueue[_currentWave].Count + this.GetComponentsInChildren<Transform>().Length - 1);
+        
         waveInformation.SetWaveCount(_currentWave + 1);
+        waveInformation.SetEnemyCount(_enemyWaveQueue[_currentWave].Count + this.GetComponentsInChildren<Enemy>().Length);
 
         Vector2 bottomLeft = playerCamera.ScreenToWorldPoint(new Vector3(0, 0, playerCamera.nearClipPlane));
         Vector2 topRight = playerCamera.ScreenToWorldPoint(new Vector3(playerCamera.pixelWidth, playerCamera.pixelHeight, playerCamera.nearClipPlane));

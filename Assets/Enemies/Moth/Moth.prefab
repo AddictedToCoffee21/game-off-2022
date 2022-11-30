@@ -139,7 +139,7 @@ MonoBehaviour:
   hasDeathAnimation: 1
   periodLength: 0.5
   amplitude: 1
-  bulletSpeed: 5
+  bulletSpeed: 7
   bullet: {fileID: 5029885463600679578, guid: 0cc6a423071e0ed4991743923e434d42, type: 3}
 --- !u!114 &4854887936165241413
 MonoBehaviour:

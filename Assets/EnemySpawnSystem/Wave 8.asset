@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 1478142795517977689, guid: aafaf9c722030964f93558678d860776, type: 3}
   - {fileID: 1478142795517977689, guid: aafaf9c722030964f93558678d860776, type: 3}
   - {fileID: 2178025782023476292, guid: 8501d7fc307cb3441ad6a170e75a48cb, type: 3}
-  - {fileID: 2178025782023476292, guid: 8501d7fc307cb3441ad6a170e75a48cb, type: 3}
+  - {fileID: 4854887936165241422, guid: c6166dc5f15d1dc428702b7b1b77a2a6, type: 3}
   - {fileID: 2178025782023476292, guid: 8501d7fc307cb3441ad6a170e75a48cb, type: 3}
   maxEnemyCount: 5
   timeBetweenEnemySpawn: 0
