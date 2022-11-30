@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     public Tutorial tutorial;
     public GameMenu GameMenu;
+
+    public Options options;
     
     private void Start()
     {
@@ -99,6 +101,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
+        _audio.volume = Options.soundVolume;
         if(isDead || GameMenu.PauseScreen.active) 
         {
             //No Movement Input allowed
@@ -229,7 +232,7 @@ public class PlayerController : MonoBehaviour
 
         isAttackReady = true;
         //_audio.clip = AttackReady;
-        _audio.PlayOneShot(AttackReady, 3f);
+        _audio.PlayOneShot(AttackReady);
 
     }
 

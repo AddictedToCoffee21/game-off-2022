@@ -9,9 +9,13 @@ public class BackgroundMusic : MonoBehaviour
 
     public GameObject Heartbeat;
 
+    public Options options;
+
     private float timeGone;
 
     private AudioSource _source;
+
+    private bool isHeartBeatPlaying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,27 +25,36 @@ public class BackgroundMusic : MonoBehaviour
         _source.Play();
     }
 
+    void Update() 
+    {
+        if(!isHeartBeatPlaying)
+            _source.volume = Options.musicVolume;
+        else
+            _source.volume = Options.musicVolume * 0.3f;
+
+        Heartbeat.GetComponent<AudioSource>().volume = Options.soundVolume;
+    }
+
     public void PlayBackground() 
     {
         Heartbeat.SetActive(false);
-        _source.volume = 1f;
+        _source.volume = Options.musicVolume;
         _source.clip = music;
         _source.time = timeGone;
         _source.Play();
-
     }
 
     public void PlayDeathMusic() 
     {
         Heartbeat.SetActive(false);
-        _source.volume = 1f;
+        _source.volume = Options.musicVolume * 0.5f;
         _source.clip = DeathMusic;
         _source.Play();
     }
 
     public void PlayHeartbeat()
     {
+        isHeartBeatPlaying = true;
         Heartbeat.SetActive(true);
-        _source.volume = 0.1f;
     }
 }
